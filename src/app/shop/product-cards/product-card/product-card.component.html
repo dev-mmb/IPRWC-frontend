@@ -5,14 +5,16 @@
         <img src="http://localhost:8080/product_image/{{product.image}}" class="img-fluid">
       </div>
     </div>
-    <div class="col-sm">
+    <div class="col-sm product_specs">
       <p>{{product.name}}</p>
       <p>{{product.specs}}</p>
       <p>{{product.description}}</p>
     </div>
-    <div class="col-sm">
-      <p>{{product.price}}</p>
-      <button class="btn btn-primary"></button>
+    <div class="col-md-auto">
+      <div class="price">{{product.price}}</div>
+      <div class="buy_button">
+        <button class="btn btn-primary">Koop</button>
+      </div>
     </div>
   </div>
 </div>

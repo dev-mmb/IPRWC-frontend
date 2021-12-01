@@ -1,0 +1,5 @@
+@use '../shop.component' as shopcomponent;
+
+.col-xs-12.cards {
+  padding-left: shopcomponent.$search-filters-padding-left;
+}

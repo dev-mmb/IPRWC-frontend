@@ -1,0 +1,17 @@
+@use '../shop.component' as shopcomponent;
+
+$logo-width: 166px;
+
+.col-md-auto.logo {
+  width: $logo-width;
+  height: auto;
+  padding-left: 0;
+}
+.col.searchbar {
+  padding-top: 1%;
+  padding-left: shopcomponent.$search-filters-padding-left - $logo-width;
+}
+.app-search-bar {
+  display: block;
+  width: 600px;
+}

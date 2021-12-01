@@ -1,0 +1,9 @@
+$search-filters-padding-left: 300px;
+
+.container.shop {
+  padding-left: $search-filters-padding-left;
+  margin-left: 0;
+}
+.col-md-auto.searchfilters {
+  width: $search-filters-padding-left;
+}

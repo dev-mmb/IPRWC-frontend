@@ -1,0 +1,8 @@
+@use '../../../../styles' as styles;
+
+.container.card {
+  background-color: styles.$IPRWC-blue-white;
+}
+.image-container {
+  padding: 10px;
+}

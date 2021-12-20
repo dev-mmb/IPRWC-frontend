@@ -17,6 +17,10 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSearch(value : string) {
+    this.productCards.setSearchName(value);
+    this.productCards.getProductsFromService();
+  }
   onTagSelected(tag : FilterTagModel) {
     this.productCards.toggleTag(tag);
     this.productCards.getProductsFromService();

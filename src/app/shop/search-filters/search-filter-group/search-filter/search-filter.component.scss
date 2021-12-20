@@ -1,0 +1,9 @@
+@import "src/styles";
+@import "src/app/shop/search-filters/search-filter-group/search-filter-group.component";
+
+.form-check-input.option {
+  border-color: $IPRWC-light-blue;
+}
+.form-check {
+  margin-left: $filter-group-indent + $filter-group-indent;
+}

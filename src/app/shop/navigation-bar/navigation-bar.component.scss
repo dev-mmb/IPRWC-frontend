@@ -20,3 +20,11 @@ $logo-width: 166px;
   display: block;
   width: 800px;
 }
+
+.shopping-cart-image {
+  height: 80px;
+  padding: 10px;
+  &:hover {
+    background-color: #387fab;
+  }
+}

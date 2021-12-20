@@ -1,0 +1,15 @@
+@import "src/styles.scss";
+
+$filter-group-indent: 10px;
+
+.filter-name {
+  background-color: $IPRWC-white;
+
+  font-weight: bold;
+  font-family: Arial, serif;
+
+  padding-left: $filter-group-indent;
+  margin: $filter-group-indent;
+
+  border-bottom: $IPRWC-light-blue 2px solid;
+}

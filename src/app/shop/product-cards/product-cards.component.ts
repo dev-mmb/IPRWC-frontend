@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductModel} from "../ProductModel";
-import {HttpService} from "../../http.service";
 import {ShopService} from "../shop.service";
 import {FilterTagModel} from "../search-filters/search-filter-group/filterTag.model";
 
@@ -22,12 +21,15 @@ export class ProductCardsComponent implements OnInit {
   getProductsFromService() : void {
     this.http.getProducts((data) => {
       this.products = data;
-      console.log(data);
     });
   }
 
   toggleTag(tag : FilterTagModel) {
     this.http.toggleTag(tag);
+  }
+
+  setSearchName(name : string) {
+    this.http.setSearchName(name);
   }
 
 }

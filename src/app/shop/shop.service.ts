@@ -8,9 +8,11 @@ import {FilterTagModel} from "./search-filters/search-filter-group/filterTag.mod
 })
 export class ShopService {
   private tags : FilterTagModel[];
+  private searchedName : string;
 
   constructor(private http : HttpService) {
     this.tags = [];
+    this.searchedName = "";
   }
 
   getProducts(implementation : (data : ProductModel[]) => void) : void {
@@ -18,6 +20,7 @@ export class ShopService {
 
     if (this.tags.length !== 0) {
       let dataString = "";
+
       for (let tag of this.tags) {
         dataString += tag.name + ",";
       }
@@ -25,6 +28,10 @@ export class ShopService {
       // remove last comma
       dataString = dataString.substr(0, dataString.length - 1);
       map.set("tags", dataString);
+    }
+
+    if (this.searchedName !== "") {
+      map.set("name", this.searchedName);
     }
 
     this.http.get<ProductModel[]>("/product", map, implementation);
@@ -37,5 +44,9 @@ export class ShopService {
     else {
       this.tags.push(tag);
     }
+  }
+
+  setSearchName(name : string) {
+    this.searchedName = name;
   }
 }

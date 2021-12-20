@@ -12,6 +12,9 @@ import { LogoComponent } from './shop/navigation-bar/logo/logo.component';
 import { ProductCardComponent } from './shop/product-cards/product-card/product-card.component';
 import { SearchFilterGroupComponent } from './shop/search-filters/search-filter-group/search-filter-group.component';
 import { SearchFilterComponent } from './shop/search-filters/search-filter-group/search-filter/search-filter.component';
+import {AppRouting} from "./app.routing";
+import { LoginComponent } from './login/login.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,14 @@ import { SearchFilterComponent } from './shop/search-filters/search-filter-group
     LogoComponent,
     ProductCardComponent,
     SearchFilterGroupComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    LoginComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRouting
   ],
   providers: [],
   bootstrap: [AppComponent]

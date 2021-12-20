@@ -4,7 +4,12 @@
       <app-logo></app-logo>
     </div>
     <div class="col searchbar">
-      <app-search-bar class="app-search-bar"></app-search-bar>
+      <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
+    </div>
+    <div class="col cart">
+      <a routerLink="/shopping-cart-component" routerLinkActive="active">
+        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
+      </a>
     </div>
   </div>
 </div>

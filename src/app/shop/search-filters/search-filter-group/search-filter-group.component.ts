@@ -6,7 +6,7 @@ import {HttpService} from "../../../http.service";
 @Component({
   selector: 'app-search-filter-group',
   templateUrl: './search-filter-group.component.html',
-  styleUrls: ['./search-filter-group.component.css']
+  styleUrls: ['./search-filter-group.component.scss']
 })
 export class SearchFilterGroupComponent implements OnInit {
   @Output() onSelectEvent = new EventEmitter();

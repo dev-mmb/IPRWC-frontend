@@ -2,7 +2,7 @@
 <div class="container shop">
   <div class="row">
     <div class="col-md-auto searchfilters">
-      <app-search-filters></app-search-filters>
+      <app-search-filters (onSelectEvent)="onTagSelected($event)"></app-search-filters>
     </div>
     <div class="col">
       <app-product-cards></app-product-cards>

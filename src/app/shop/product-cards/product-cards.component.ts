@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductModel} from "../ProductModel";
-import {Observable} from "rxjs";
-import {ProductInterface} from "../Product.interface";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {HttpResponse} from "../../HttpResponse";
+import {HttpService} from "../../http.service";
+import {ShopService} from "../shop.service";
+import {FilterTagModel} from "../search-filters/search-filter-group/filterTag.model";
 
 @Component({
   selector: 'app-product-cards',
@@ -13,19 +12,22 @@ import {HttpResponse} from "../../HttpResponse";
 export class ProductCardsComponent implements OnInit {
   products : ProductModel[] = [];
 
-  constructor(private http : HttpClient) {
-
-    this.http.get<HttpResponse<ProductInterface[]>>("http://localhost:8080/product")
-      .subscribe(
-      (data: HttpResponse<ProductInterface[]>) => {
-        let productData : ProductInterface[] = data.data;
-        for (let i = 0; i < productData.length; i++) {
-          this.products.push(productData[i]);
-        }
-      });
+  constructor(private http : ShopService) {
+    this.getProductsFromService();
   }
 
   ngOnInit(): void {
+  }
+
+  getProductsFromService() : void {
+    this.http.getProducts((data) => {
+      this.products = data;
+      console.log(data);
+    });
+  }
+
+  toggleTag(tag : FilterTagModel) {
+    this.http.toggleTag(tag);
   }
 
 }

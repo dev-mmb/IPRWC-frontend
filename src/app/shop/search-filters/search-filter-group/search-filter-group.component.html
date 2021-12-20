@@ -1,0 +1,5 @@
+<hr>
+<p>{{filter.name}}</p>
+<div class="tags" *ngFor="let tag of tags">
+  <app-search-filter [tag]="tag" (onSelectEvent)="onTagSelected($event)"></app-search-filter>
+</div>

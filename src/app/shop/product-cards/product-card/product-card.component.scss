@@ -7,7 +7,7 @@
   padding: 10px;
 }
 
-.col-sm.product_specs {
+.col-sm.product-specs {
   width: 120%;
 }
 
@@ -17,4 +17,16 @@
 
 .buy_button {
   padding-top: 20px;
+}
+
+.product-name {
+  margin-bottom: 2vh;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.product-specs-data {
+  color: gray;
+  font-size: 12px;
+  margin-bottom: 1vh;
 }

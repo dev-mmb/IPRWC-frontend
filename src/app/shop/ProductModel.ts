@@ -1,6 +1,5 @@
-import {ProductInterface} from "./Product.interface";
 
-export class ProductModel implements ProductInterface {
+export class ProductModel  {
   description: string;
   filterTags: string[];
   id: string;
@@ -9,12 +8,12 @@ export class ProductModel implements ProductInterface {
   price: number;
   specs: string;
 
-  constructor(name : string) {
+  constructor() {
     this.description = "";
     this.filterTags = [];
     this.id = "";
     this.image = "";
-    this.name = name;
+    this.name = "";
     this.price = 0;
     this.specs = "";
   }

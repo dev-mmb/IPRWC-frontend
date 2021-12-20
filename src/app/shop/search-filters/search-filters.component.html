@@ -1,1 +1,5 @@
-<p class="searchfilter">search-filters works!</p>
+<div class="filters-container">
+  <div class="filter-group-container" *ngFor="let filterGroup of filters">
+    <app-search-filter-group [filter]="filterGroup" (onSelectEvent)="onTagSelected($event)"></app-search-filter-group>
+  </div>
+</div>

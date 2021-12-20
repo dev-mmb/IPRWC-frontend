@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FilterGroupModel} from "./search-filter-group/filterGroup.model";
+import {HttpService} from "../../http.service";
+import {FilterTagModel} from "./search-filter-group/filterTag.model";
 
 @Component({
   selector: 'app-search-filters',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-filters.component.scss']
 })
 export class SearchFiltersComponent implements OnInit {
+  @Output() onSelectEvent = new EventEmitter();
+  filters : FilterGroupModel[];
 
-  constructor() { }
+  constructor(private http : HttpService) {
+    this.filters = [];
+    http.get<FilterGroupModel[]>("/filter_group", new Map<string, string>(), (data) => {
+      this.filters = data;
+    });
+  }
 
   ngOnInit(): void {
   }
 
+  onTagSelected(tag : FilterTagModel) {
+    this.onSelectEvent.emit(tag);
+  }
 }

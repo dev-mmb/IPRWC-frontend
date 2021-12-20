@@ -10,7 +10,8 @@ import { NavigationBarComponent } from './shop/navigation-bar/navigation-bar.com
 import { SearchBarComponent } from './shop/navigation-bar/search-bar/search-bar.component';
 import { LogoComponent } from './shop/navigation-bar/logo/logo.component';
 import { ProductCardComponent } from './shop/product-cards/product-card/product-card.component';
-import { SearchFilterComponent } from './shop/search-filters/search-filter/search-filter.component';
+import { SearchFilterGroupComponent } from './shop/search-filters/search-filter-group/search-filter-group.component';
+import { SearchFilterComponent } from './shop/search-filters/search-filter-group/search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SearchFilterComponent } from './shop/search-filters/search-filter/searc
     SearchBarComponent,
     LogoComponent,
     ProductCardComponent,
+    SearchFilterGroupComponent,
     SearchFilterComponent
   ],
   imports: [

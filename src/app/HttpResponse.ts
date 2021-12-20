@@ -1,10 +1,10 @@
 
-export class HttpResponse<type> {
+export class HttpResponse<T> {
   response : string = "";
-  errorMessage : string = "";
-  data : type;
+  error : string = "";
+  data : T;
 
-  constructor(data : type) {
+  constructor(data : T) {
     this.data = data;
   }
 }

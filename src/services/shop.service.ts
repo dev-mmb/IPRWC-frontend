@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpService} from "../http.service";
-import {ProductModel} from "./ProductModel";
-import {FilterTagModel} from "./search-filters/search-filter-group/filterTag.model";
+import {HttpService} from "./http.service";
+import {ProductModel} from "../app/shop/ProductModel";
+import {FilterTagModel} from "../app/shop/search-filters/search-filter-group/filterTag.model";
 
 @Injectable({
   providedIn: 'root'

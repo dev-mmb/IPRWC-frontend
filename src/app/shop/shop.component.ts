@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpService} from "../http.service";
+import {HttpService} from "../../services/http.service";
 import {FilterTagModel} from "./search-filters/search-filter-group/filterTag.model";
 import {ProductCardsComponent} from "./product-cards/product-cards.component";
 

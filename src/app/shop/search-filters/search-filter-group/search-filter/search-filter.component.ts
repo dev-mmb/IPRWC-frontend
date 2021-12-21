@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilterTagModel} from "../filterTag.model";
-import {ShopService} from "../../../shop.service";
+import {ShopService} from "../../../../../services/shop.service";
 
 @Component({
   selector: 'app-search-filter',

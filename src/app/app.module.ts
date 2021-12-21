@@ -34,7 +34,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRouting
+    AppRouting,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

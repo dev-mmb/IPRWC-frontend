@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductModel} from "../ProductModel";
-import {ShopService} from "../shop.service";
+import {ShopService} from "../../../services/shop.service";
 import {FilterTagModel} from "../search-filters/search-filter-group/filterTag.model";
 
 @Component({

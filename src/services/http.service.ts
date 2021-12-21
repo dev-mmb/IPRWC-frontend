@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpResponse} from "./HttpResponse";
+import {HttpResponse} from "../app/HttpResponse";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 
 @Injectable({

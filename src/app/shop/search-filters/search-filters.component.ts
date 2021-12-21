@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilterGroupModel} from "./search-filter-group/filterGroup.model";
-import {HttpService} from "../../http.service";
+import {HttpService} from "../../../services/http.service";
 import {FilterTagModel} from "./search-filter-group/filterTag.model";
 
 @Component({

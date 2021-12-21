@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilterGroupModel} from "./filterGroup.model";
 import {FilterTagModel} from "./filterTag.model";
-import {HttpService} from "../../../http.service";
+import {HttpService} from "../../../../services/http.service";
 
 @Component({
   selector: 'app-search-filter-group',

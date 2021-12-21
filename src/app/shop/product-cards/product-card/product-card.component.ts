@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductModel} from "../../ProductModel";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {LoginComponent} from "../../../login/login.component";
+import {ShoppingCartService} from "../../../../services/shopping-cart.service";
 
 @Component({
   selector: 'app-product-card',
@@ -9,11 +12,15 @@ import {ProductModel} from "../../ProductModel";
 export class ProductCardComponent implements OnInit {
   @Input() product : ProductModel;
 
-  constructor() {
+  constructor(private shoppingCartService : ShoppingCartService) {
     this.product = new ProductModel();
   }
 
   ngOnInit(): void {
+  }
+
+  buyButtonClicked() {
+    this.shoppingCartService.addToCartAndLogin(this.product);
   }
 
 }

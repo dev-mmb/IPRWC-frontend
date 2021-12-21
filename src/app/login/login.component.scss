@@ -1,0 +1,25 @@
+@import "src/styles";
+
+.form-control.username {
+  margin-bottom: 20px;
+}
+
+.form-control.password {
+
+}
+
+.modal-header.login {
+  background-color: $IPRWC-light-blue;
+}
+
+.login-container {
+}
+
+form {
+  color: $IPRWC-blue;
+}
+
+label {
+  font-size: 17px;
+  margin-left: 10px;
+}

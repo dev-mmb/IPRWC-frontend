@@ -7,7 +7,7 @@
       <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
     </div>
     <div class="col cart">
-      <a routerLink="/shopping-cart-component" routerLinkActive="active">
+      <a (click)="onOpenShoppingCart()">
         <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
       </a>
     </div>

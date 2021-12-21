@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Router} from "@angular/router";
+import {ShoppingCartService} from "../../../services/shopping-cart.service";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,12 +10,16 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class NavigationBarComponent implements OnInit {
   @Output() onSearchEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(private shoppingCart : ShoppingCartService) { }
 
   ngOnInit(): void {
   }
 
   onSearch(value : string) {
     this.onSearchEvent.emit(value);
+  }
+
+  onOpenShoppingCart() {
+    this.shoppingCart.openCartAndLogin();
   }
 }

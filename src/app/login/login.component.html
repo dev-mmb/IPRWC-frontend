@@ -1,1 +1,37 @@
+<div class="login-container">
+  <div class="modal-header login">
+    <div class="modal-title">Login</div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="modal-body">
+      <label for="login-component-username-input">gebruikersnaam</label>
+      <input type="text" class="form-control username"
+             id="login-component-username-input"
+             name="username"
+             required
+             ngModel
+             #username="ngModel"
+             [ngClass]="{'is-invalid': !username.valid && username.touched}"
+             (keyup)="onKeyUsername($event)">
+      <label for="login-component-password-input">wachtwoord</label>
+      <input type="password" class="form-control password"
+             id="login-component-password-input"
+             name="password"
+             required
+             ngModel
+             #password="ngModel"
+             [ngClass]="{'is-invalid': !password.valid && password.touched}"
+             (keyup)="onKeyPassword($event)">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary"
+              [disabled]="!f.valid" (click)="onLoginButtonClicked()">
+        login
+      </button>
+    </div>
+  </form>
+</div>
+
 

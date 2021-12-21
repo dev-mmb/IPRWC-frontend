@@ -7,9 +7,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   providedIn: 'root'
 })
 export class LoginService {
-
   private loggedIn : boolean = false;
   private onSuccess : () => void;
+
   constructor(private http : HttpService, private modalService : NgbModal) {
     this.onSuccess = () => {};
   }

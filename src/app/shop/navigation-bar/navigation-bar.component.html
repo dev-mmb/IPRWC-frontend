@@ -8,6 +8,7 @@
     </div>
     <div class="col cart">
       <a (click)="onOpenShoppingCart()">
+        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>
         <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
       </a>
     </div>

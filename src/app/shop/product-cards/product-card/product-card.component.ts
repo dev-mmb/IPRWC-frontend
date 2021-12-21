@@ -23,4 +23,12 @@ export class ProductCardComponent implements OnInit {
     this.shoppingCartService.addToCartAndLogin(this.product);
   }
 
+  getFullProductSpecs() : string {
+    let specs = "";
+    for (let i = 0; i < this.product.filterTags.length; i++) {
+      specs +=  this.product.filterTags[i].name + ", ";
+    }
+    return specs + this.product.specs;
+  }
+
 }

@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from "@angular/router";
+import {ApplicationRef, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from "../../../services/shopping-cart.service";
+import {ProductModel} from "../ProductModel";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -9,8 +9,12 @@ import {ShoppingCartService} from "../../../services/shopping-cart.service";
 })
 export class NavigationBarComponent implements OnInit {
   @Output() onSearchEvent = new EventEmitter();
+  shoppingCartSizeString : string;
 
-  constructor(private shoppingCart : ShoppingCartService) { }
+  constructor(private shoppingCart : ShoppingCartService) {
+    shoppingCart.onShoppingCartChanged.subscribe(this.onShoppingCartChanged.bind(this));
+    this.shoppingCartSizeString = "0";
+  }
 
   ngOnInit(): void {
   }
@@ -22,4 +26,18 @@ export class NavigationBarComponent implements OnInit {
   onOpenShoppingCart() {
     this.shoppingCart.openCartAndLogin();
   }
+
+  onShoppingCartChanged(cart : ProductModel[]) {
+    if (cart.length > 9) {
+      this.shoppingCartSizeString = "9+";
+    }
+    else {
+      this.shoppingCartSizeString = cart.length + "";
+    }
+  }
+
+  shouldShowShoppingCartSize() : boolean {
+    return this.shoppingCartSizeString !== "0";
+  }
+
 }

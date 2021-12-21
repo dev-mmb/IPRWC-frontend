@@ -28,3 +28,16 @@ $logo-width: 166px;
     background-color: #387fab;
   }
 }
+.numberCircle {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 0px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+
+  background: styles.$IPRWC-red;
+  text-align: center;
+
+  font: 18px Arial, sans-serif;
+}

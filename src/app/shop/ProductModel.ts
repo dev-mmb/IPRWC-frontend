@@ -1,7 +1,7 @@
 
 export class ProductModel  {
   description: string;
-  filterTags: string[];
+  filterTags: [{name : string, filterGroup : {name : string}}];
   id: string;
   image: string;
   name: string;
@@ -10,7 +10,7 @@ export class ProductModel  {
 
   constructor() {
     this.description = "";
-    this.filterTags = [];
+    this.filterTags = [{name: "", filterGroup: {name: ""}}];
     this.id = "";
     this.image = "";
     this.name = "";

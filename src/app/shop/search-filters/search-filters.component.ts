@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {FilterGroupModel} from "./search-filter-group/filterGroup.model";
 import {HttpService} from "../../../services/http.service";
 import {FilterTagModel} from "./search-filter-group/filterTag.model";
@@ -11,6 +11,7 @@ import {FilterTagModel} from "./search-filter-group/filterTag.model";
 export class SearchFiltersComponent implements OnInit {
   @Output() onSelectEvent = new EventEmitter();
   filters : FilterGroupModel[];
+  shouldUseMobileLayout = false;
 
   constructor(private http : HttpService) {
     this.filters = [];
@@ -20,9 +21,15 @@ export class SearchFiltersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onResize(null);
   }
 
   onTagSelected(tag : FilterTagModel) {
     this.onSelectEvent.emit(tag);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event : any) {
+    this.shouldUseMobileLayout = (window.screen.width <= 991);
   }
 }

@@ -1,9 +1,21 @@
 $search-filters-padding-left: 20vw;
+$search-filters-padding-left-mobile: 5vw;
 
 .shop {
   padding-left: $search-filters-padding-left;
   margin-left: 0;
 }
-.searchfilters {
+.search-filters {
   width: $search-filters-padding-left;
+}
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {
+  .search-filters {
+    padding-left: $search-filters-padding-left-mobile;
+  }
+  .shop {
+    padding-left: 0;
+    margin-left: 0;
+  }
 }

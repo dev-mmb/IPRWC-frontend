@@ -1,5 +1,19 @@
-<div class="filters-container">
+<!--desktop layout-->
+<div class="filters-container" *ngIf="!shouldUseMobileLayout">
   <div class="filter-group-container" *ngFor="let filterGroup of filters">
     <app-search-filter-group [filter]="filterGroup" (onSelectEvent)="onTagSelected($event)"></app-search-filter-group>
   </div>
 </div>
+<!--mobile layout-->
+<div class="d-inline-block" ngbDropdown *ngIf="shouldUseMobileLayout">
+  <button class="btn btn-outline-primary" id="filtersDropdownForm" ngbDropdownToggle>filter</button>
+  <div ngbDropdownMenu aria-labelledby="filtersDropdownForm">
+    <div class="filters-container" >
+      <div class="filter-group-container" *ngFor="let filterGroup of filters">
+        <app-search-filter-group [filter]="filterGroup" (onSelectEvent)="onTagSelected($event)"></app-search-filter-group>
+      </div>
+    </div>
+  </div>
+
+</div>
+

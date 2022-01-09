@@ -41,6 +41,7 @@ export class NavigationBarComponent implements OnInit {
   shouldShowShoppingCartSize() : boolean {
     return this.shoppingCartSizeString !== "0";
   }
+
   @HostListener('window:resize', ['$event'])
   onResize(event : any) {
     this.shouldUseMobileLayout = (window.screen.width <= 991);

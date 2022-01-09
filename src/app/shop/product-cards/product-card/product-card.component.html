@@ -1,16 +1,16 @@
 <div class="container card">
   <div class="row">
-    <div class="col image">
+    <div class="col-md image">
       <div class="image-container">
         <img src="http://localhost:8080/product_image/{{product.image}}" class="img-fluid" alt="an image of the described product">
       </div>
     </div>
-    <div class="col product-specs">
+    <div class="col-md-7 product-specs">
       <div class="product-name">{{product.name}}</div>
       <div class="product-specs-data">{{getFullProductSpecs()}}</div>
       <div class="product-description">{{product.description}}</div>
     </div>
-    <div class="col-auto price-and-button">
+    <div class="col-md-2 price-and-button">
       <div class="price">{{product.price}}</div>
       <div class="buy_button">
         <button class="btn btn-primary" (click)="buyButtonClicked()">Koop</button>

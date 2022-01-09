@@ -1,27 +1,46 @@
-<div class="container navigationbar">
+<!--desktop layout-->
+<div class="container-fluid navigationbar" *ngIf="!shouldUseMobileLayout">
+
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <app-logo></app-logo>
+    </div>
+    <div class="col-md-6 searchbar">
+      <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
+    </div>
+    <div class="col-md-3">
+      <a (click)="onOpenShoppingCart()">
+        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>
+        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!--mobile layout: -->
+<div class="container-fluid navigationbar" *ngIf="shouldUseMobileLayout">
 
   <div class="row">
-    <div class="col-sm">
-<!--      <app-logo></app-logo>-->
-      logo
+    <div class="col-5">
+      <app-logo></app-logo>
     </div>
-    <div class="col-sm-2">
-<!--      <a (click)="onOpenShoppingCart()">-->
-<!--        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>-->
-<!--        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">-->
-<!--      </a>-->
-      shop
+
+    <div class="col-3">
+      <a (click)="onOpenShoppingCart()">
+        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>
+        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
+      </a>
     </div>
+
   </div>
 
-  <div class="row">
-    <div class="col searchbar">
+  <div class="row justify-content-center">
+    <div class="col-6 searchbar">
       <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
     </div>
   </div>
-
 </div>
-
 
 
 

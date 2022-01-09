@@ -1,4 +1,4 @@
-import {ApplicationRef, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ApplicationRef, ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from "../../../services/shopping-cart.service";
 import {ProductModel} from "../ProductModel";
 
@@ -10,6 +10,7 @@ import {ProductModel} from "../ProductModel";
 export class NavigationBarComponent implements OnInit {
   @Output() onSearchEvent = new EventEmitter();
   shoppingCartSizeString : string;
+  shouldUseMobileLayout = false;
 
   constructor(private shoppingCart : ShoppingCartService) {
     shoppingCart.onShoppingCartChanged(this.onShoppingCartChanged.bind(this));
@@ -17,6 +18,7 @@ export class NavigationBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onResize(null);
   }
 
   onSearch(value : string) {
@@ -39,5 +41,8 @@ export class NavigationBarComponent implements OnInit {
   shouldShowShoppingCartSize() : boolean {
     return this.shoppingCartSizeString !== "0";
   }
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event : any) {
+    this.shouldUseMobileLayout = (window.screen.width <= 991);
+  }
 }

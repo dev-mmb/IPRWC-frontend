@@ -1,15 +1,13 @@
-@use '../shop.component' as shopcomponent;
-@use '../../../styles' as styles;
+@import "src/styles";
+@import "src/app/shop/shop.component";
 
 $logo-width: 166px;
 
 .navigationbar {
-  background-color: styles.$IPRWC-blue;
+  background-color: $IPRWC-blue;
   margin-bottom: 50px;
   //padding-left: shopcomponent.$search-filters-padding-left;
 }
-
-
 
 .shopping-cart-image {
   height: 80px;
@@ -21,7 +19,9 @@ $logo-width: 166px;
 
 .searchbar {
   padding-bottom: 1%;
+  padding-top: 1%;
 }
+
 
 .numberCircle {
   position: absolute;
@@ -31,12 +31,12 @@ $logo-width: 166px;
   width: 25px;
   height: 25px;
 
-  background: styles.$IPRWC-red;
+  background: $IPRWC-red;
   text-align: center;
 
   font: 18px Arial, sans-serif;
 }
-
+//
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {  }
 
@@ -44,7 +44,9 @@ $logo-width: 166px;
 @media (min-width: 768px) {  }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
+@media (min-width: 992px) {
+
+}
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {  }

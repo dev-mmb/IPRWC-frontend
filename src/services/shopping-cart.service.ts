@@ -3,13 +3,14 @@ import {HttpService} from "./http.service";
 import {LoginService} from "./login.service";
 import {ProductModel} from "../app/shop/ProductModel";
 import {Router} from "@angular/router";
+import {ShoppingCartModel} from "../app/shopping-cart/shopping-cart.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  private _onShoppingCartChanged = new EventEmitter<ProductModel[]>();
-  private tempShoppingCart : ProductModel[] = [];
+  private _onShoppingCartChanged = new EventEmitter<ShoppingCartModel>();
+  private shoppingCart : ShoppingCartModel = new ShoppingCartModel();
 
   constructor(private http : HttpService, private login : LoginService, private router : Router) { }
 
@@ -36,15 +37,15 @@ export class ShoppingCartService {
   }
 
   private addToCart(model : ProductModel) {
-    this.tempShoppingCart.push(model);
-    this._onShoppingCartChanged.emit(this.tempShoppingCart);
+    this.shoppingCart.products.push(model);
+    this._onShoppingCartChanged.emit(this.shoppingCart);
   }
 
   private openCart() {
     this.router.navigate(["shopping-cart-component"]).then();
   }
 
-  public onShoppingCartChanged(event : (cart : ProductModel[]) => void) {
+  public onShoppingCartChanged(event : (cart : ShoppingCartModel) => void) {
     this._onShoppingCartChanged.subscribe(event);
   }
 }

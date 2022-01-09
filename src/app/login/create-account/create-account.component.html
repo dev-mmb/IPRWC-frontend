@@ -4,7 +4,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     </button>
   </div>
-  <form  #f="ngForm">
+  <form #f="ngForm">
     <div class="modal-body">
       <label for="login-component-username-input">email</label>
       <input type="text" class="form-control username"
@@ -24,23 +24,19 @@
              #password="ngModel"
              [ngClass]="{'is-invalid': !password.valid && password.touched}"
              (keyup)="onKeyPassword($event)">
-      <div class="error-text" *ngIf="shouldShowError">Wachtwoord of Email fout!</div>
+      <label for="login-component-password-input-two">herhaal wachtwoord</label>
+      <input type="password" class="form-control password"
+             id="login-component-password-input-two"
+             name="password-two"
+             required
+             ngModel
+             #password_two="ngModel"
+             [ngClass]="{'is-invalid': !password_two.valid && password_two.touched}"
+             (keyup)="onKeySecondPassword($event)">
     </div>
+    <div class="passwords-not-the-same-error-text" *ngIf="!areBothPasswordsTheSame()">Wachtwoorden zijn niet gelijk!</div>
     <div class="modal-footer">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-9">
-            <button type="button" class="btn btn-link" (click)="onCreateAccount()">nog geen account?</button>
-          </div>
-          <div class="col-2">
-            <button type="button" class="btn btn-primary"
-                    [disabled]="!f.valid" (click)="onLoginButtonClicked()">
-              login
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!(f.valid && areBothPasswordsTheSame())">maak account</button>
     </div>
   </form>
 </div>

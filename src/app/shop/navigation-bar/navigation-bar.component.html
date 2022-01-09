@@ -1,18 +1,25 @@
-<div class="container-fluid navigationbar">
+<div class="container navigationbar">
+
   <div class="row">
-    <div class="col-md-auto logo">
-      <app-logo></app-logo>
+    <div class="col-sm">
+<!--      <app-logo></app-logo>-->
+      logo
     </div>
+    <div class="col-sm-2">
+<!--      <a (click)="onOpenShoppingCart()">-->
+<!--        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>-->
+<!--        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">-->
+<!--      </a>-->
+      shop
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col searchbar">
       <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
     </div>
-    <div class="col cart">
-      <a (click)="onOpenShoppingCart()">
-        <div class="numberCircle" *ngIf="shouldShowShoppingCartSize()">{{shoppingCartSizeString}}</div>
-        <img src="/assets/shopping-cart.png" alt="shopping cart" class="shopping-cart-image">
-      </a>
-    </div>
   </div>
+
 </div>
 
 

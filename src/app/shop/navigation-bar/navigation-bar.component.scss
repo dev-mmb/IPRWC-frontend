@@ -3,23 +3,13 @@
 
 $logo-width: 166px;
 
-.container-fluid.navigationbar {
+.navigationbar {
   background-color: styles.$IPRWC-blue;
   margin-bottom: 50px;
+  //padding-left: shopcomponent.$search-filters-padding-left;
 }
-.col-md-auto.logo {
-  width: $logo-width;
-  height: auto;
-  padding-left: 0;
-}
-.col.searchbar {
-  padding-top: 1%;
-  padding-left: shopcomponent.$search-filters-padding-left - $logo-width;
-}
-.app-search-bar {
-  display: block;
-  width: 800px;
-}
+
+
 
 .shopping-cart-image {
   height: 80px;
@@ -28,6 +18,11 @@ $logo-width: 166px;
     background-color: #387fab;
   }
 }
+
+.searchbar {
+  padding-bottom: 1%;
+}
+
 .numberCircle {
   position: absolute;
   margin-top: 10px;
@@ -41,3 +36,18 @@ $logo-width: 166px;
 
   font: 18px Arial, sans-serif;
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {  }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {  }

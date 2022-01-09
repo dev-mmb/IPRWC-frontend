@@ -12,7 +12,7 @@ export class NavigationBarComponent implements OnInit {
   shoppingCartSizeString : string;
 
   constructor(private shoppingCart : ShoppingCartService) {
-    shoppingCart.onShoppingCartChanged.subscribe(this.onShoppingCartChanged.bind(this));
+    shoppingCart.onShoppingCartChanged(this.onShoppingCartChanged.bind(this));
     this.shoppingCartSizeString = "0";
   }
 

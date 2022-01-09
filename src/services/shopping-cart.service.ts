@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {LoginService} from "./login.service";
 import {ProductModel} from "../app/shop/ProductModel";
 import {Router} from "@angular/router";
-import {ISimpleEvent, SimpleEventDispatcher} from "strongly-typed-events";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  private _onShoppingCartChanged = new SimpleEventDispatcher<ProductModel[]>();
+  private _onShoppingCartChanged = new EventEmitter<ProductModel[]>();
   private tempShoppingCart : ProductModel[] = [];
 
   constructor(private http : HttpService, private login : LoginService, private router : Router) { }
@@ -38,14 +37,14 @@ export class ShoppingCartService {
 
   private addToCart(model : ProductModel) {
     this.tempShoppingCart.push(model);
-    this._onShoppingCartChanged.dispatch(this.tempShoppingCart);
+    this._onShoppingCartChanged.emit(this.tempShoppingCart);
   }
 
   private openCart() {
     this.router.navigate(["shopping-cart-component"]).then();
   }
 
-  public get onShoppingCartChanged() : ISimpleEvent<ProductModel[]> {
-    return this._onShoppingCartChanged.asEvent();
+  public onShoppingCartChanged(event : (cart : ProductModel[]) => void) {
+    this._onShoppingCartChanged.subscribe(event);
   }
 }

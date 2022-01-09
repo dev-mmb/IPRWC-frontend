@@ -8,7 +8,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class SearchBarComponent implements OnInit {
   public onKeyTimeout = 400;
   private delayTimer : number = 0;
-
   @Output() onSearchEvent = new EventEmitter();
 
   constructor() { }
@@ -22,4 +21,5 @@ export class SearchBarComponent implements OnInit {
       this.onSearchEvent.emit(event.target.value);
     }, this.onKeyTimeout);
   }
+
 }

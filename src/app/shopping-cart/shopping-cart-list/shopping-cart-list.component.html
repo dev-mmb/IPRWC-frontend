@@ -1,0 +1,39 @@
+<div *ngFor="let product of shoppingCart.products">
+  <app-shopping-cart-list-item [product]="product"></app-shopping-cart-list-item>
+</div>
+<div class="container price-container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+
+      <div class="container">
+        <div class="row">
+          <div class="col">totaal: </div>
+          <div class="col price">{{getTotalPrice()}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Verzendkosten: </div>
+          <div class="col sending-cost">Geen</div>
+        </div>
+        <div class="row total-cost">
+          <div class="col">Totaal: </div>
+          <div class="col">{{getTotalPrice()}}</div>
+        </div>
+        <div class="row">
+          <div class="col">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-secondary back-button" (click)="back()">verder winkelen</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary buy-button" (click)="order()">> bestel</button>
+    </div>
+  </div>
+</div>

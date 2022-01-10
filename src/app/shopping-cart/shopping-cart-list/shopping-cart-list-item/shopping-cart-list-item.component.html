@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+      <img src="http://localhost:8080/product_image/{{product.product.image}}" class="img-fluid img-custom" alt="an image of the described product">
+    </div>
+
+    <div class="col">
+      <div class="product-name">
+        {{product.product.name}}
+      </div>
+      <div class="product-specs">
+        {{product.product.specs}}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="d-inline-block" ngbDropdown>
+        Aantal
+        <button class="btn btn-outline-primary" id="amount-dropdown" ngbDropdownToggle>
+          {{product.amount}}
+        </button>
+        <div class="product-amount-container" ngbDropdownMenu >
+          <div class="product-amount-number" *ngFor="let num of getProductAmountArray()">
+            <button ngbDropdownItem (click)="onSelectProductAmount($event)" value="{{num}}">{{num}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col price">
+      {{getProductPrice()}}
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col">
+    </div>
+    <div class="col">
+      <button class="btn btn-secondary delete-button" (click)="onDelete()">
+        Verwijder
+      </button>
+    </div>
+  </div>
+</div>

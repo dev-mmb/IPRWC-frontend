@@ -1,0 +1,17 @@
+@import "src/styles";
+.delete-button {
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.img-custom {
+  height: 90px;
+  width: auto;
+}
+.container {
+  border-bottom: 1px gray solid;
+  margin-bottom: 5px;
+}
+.price {
+  color: $IPRWC-red;
+}

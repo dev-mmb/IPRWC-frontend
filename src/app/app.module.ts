@@ -18,6 +18,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CreateAccountComponent } from './login/create-account/create-account.component';
+import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list.component';
+import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list-item/shopping-cart-list-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CreateAccountComponent } from './login/create-account/create-account.co
     SearchFilterComponent,
     LoginComponent,
     ShoppingCartComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    ShoppingCartListComponent,
+    ShoppingCartListItemComponent
   ],
   imports: [
     BrowserModule,

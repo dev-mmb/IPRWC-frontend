@@ -1,0 +1,27 @@
+@import "src/styles";
+
+$button-margin-top: 50px;
+
+.price {
+  color: $IPRWC-red;
+}
+.price-container {
+  background-color: $IPRWC-blue-white;
+  height: 20vh;
+  margin-top: 5vh;
+}
+.sending-cost {
+  color: $IPRWC-blue;
+}
+.total-cost {
+  font-weight: bold;
+  border-top: 1px solid black;
+}
+.buy-button {
+  margin-top: $button-margin-top;
+  margin-left: 540px;
+}
+.back-button {
+  margin-top: $button-margin-top;
+  margin-left: 20px;
+}

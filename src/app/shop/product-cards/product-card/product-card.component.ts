@@ -3,6 +3,7 @@ import {ProductModel} from "../../ProductModel";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "../../../login/login.component";
 import {ShoppingCartService} from "../../../../services/shopping-cart.service";
+import {ShoppingCartModel} from "../../../shopping-cart/shopping-cart.model";
 
 @Component({
   selector: 'app-product-card',
@@ -30,5 +31,4 @@ export class ProductCardComponent implements OnInit {
     }
     return specs + this.product.specs;
   }
-
 }

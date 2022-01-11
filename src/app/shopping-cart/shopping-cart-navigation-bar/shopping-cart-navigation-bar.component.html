@@ -1,0 +1,38 @@
+<!--desktop layout-->
+<div class="container-fluid navigationbar" *ngIf="!shouldUseMobileLayout">
+
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <app-logo></app-logo>
+    </div>
+    <div class="col-md-6 searchbar">
+      <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
+    </div>
+    <div class="col-md-3">
+    </div>
+
+  </div>
+</div>
+
+<!--mobile layout: -->
+<div class="container-fluid navigationbar" *ngIf="shouldUseMobileLayout">
+
+  <div class="row">
+    <div class="col-5">
+      <app-logo></app-logo>
+    </div>
+
+    <div class="col-3">
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-6 searchbar">
+      <app-search-bar class="app-search-bar" (onSearchEvent)="onSearch($event)"></app-search-bar>
+    </div>
+  </div>
+</div>
+
+
+

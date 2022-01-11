@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CreateAccountComponent } from './login/create-account/create-account.component';
 import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list.component';
 import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list-item/shopping-cart-list-item.component';
+import { ShoppingCartNavigationBarComponent } from './shopping-cart/shopping-cart-navigation-bar/shopping-cart-navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-lis
     ShoppingCartComponent,
     CreateAccountComponent,
     ShoppingCartListComponent,
-    ShoppingCartListItemComponent
+    ShoppingCartListItemComponent,
+    ShoppingCartNavigationBarComponent
   ],
   imports: [
     BrowserModule,

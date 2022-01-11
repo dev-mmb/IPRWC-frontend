@@ -29,6 +29,7 @@ export class ShoppingCartListComponent implements OnInit {
   order() {
 
   }
+
   back() {
     this.router.navigate([""]);
   }

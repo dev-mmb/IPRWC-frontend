@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ShopService} from "../../../../services/shop.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -10,7 +11,7 @@ export class SearchBarComponent implements OnInit {
   private delayTimer : number = 0;
   @Output() onSearchEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(private shoppingService : ShopService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,10 @@ export class SearchBarComponent implements OnInit {
     this.delayTimer = setTimeout(() => {
       this.onSearchEvent.emit(event.target.value);
     }, this.onKeyTimeout);
+  }
+
+  getValue() : string {
+    return this.shoppingService.getSearchName();
   }
 
 }

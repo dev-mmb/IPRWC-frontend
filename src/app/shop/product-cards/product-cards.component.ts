@@ -12,13 +12,14 @@ export class ProductCardsComponent implements OnInit {
   products : ProductModel[] = [];
 
   constructor(private http : ShopService) {
-    this.getProductsFromService();
   }
 
   ngOnInit(): void {
+    this.http.turnOffAllTags();
+    this.getProductsFromService();
   }
 
-  getProductsFromService() : void {
+  getProductsFromService() {
     this.http.getProducts((data) => {
       this.products = data;
     });

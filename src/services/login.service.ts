@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
 import {LoginComponent} from "../app/login/login.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CookieService} from "ngx-cookie-service";
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +11,13 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class LoginService {
   private loggedIn : boolean = false;
   private onSuccess : () => void;
-  private token : string = "";
 
-  constructor(private http : HttpService, private modalService : NgbModal) {
+  constructor(private http : HttpService, private modalService : NgbModal, private cookieService : CookieService) {
     this.onSuccess = () => {};
   }
 
   isLoggedIn() : boolean {
-    return this.loggedIn;
+    return this.cookieService.get("jwt") !== "";
   }
 
   openLoginPopup(onSuccess : () => void) {
@@ -25,7 +26,7 @@ export class LoginService {
   }
 
   login(username : string, password : string, onSuccess : () => void, onFailure : () => void) {
-    this.http.postWithReturnType<{username : string, password : string}, string>(
+    this.http.postWithReturnType<{username : string, password : string}, {token: string}>(
       "/account/authenticate",
       {username: username, password: password},
       (token) => {
@@ -47,7 +48,8 @@ export class LoginService {
     );
   }
 
-  private handleLoginResult(token : string) {
-    this.token = token;
+  private handleLoginResult(t : {token: string}) {
+    let jwt : {sub: string, exp: number, iat: number}= jwt_decode(t.token);
+    this.cookieService.set("jwt", t.token, jwt.exp, undefined, undefined, true);
   }
 }

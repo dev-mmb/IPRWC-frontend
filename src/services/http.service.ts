@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpResponse} from "../app/HttpResponse";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,38 +13,53 @@ export class HttpService {
   private url : string = "http://localhost:8080";
   private http : HttpClient;
 
-  constructor(private h : HttpClient) {
+  constructor(private h : HttpClient, private cookieService : CookieService) {
     this.http = h;
   }
 
   // data is null if api call returns no data!!!!
   public get<T>(endpoint : string, args : Map<string, string>, implementation : (data : T) => void, onFailure : () => void = () => {}) {
+    let token = this.cookieService.get("jwt");
+    if (token === "") HttpService.onError("No token");
+
     endpoint = this.getEndpointWithArguments(endpoint, args);
 
-    this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) => {
+    this.http.get<HttpResponse<T>>(this.url + endpoint, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<T>(response, implementation, onFailure);
     });
   }
 
   public post<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
-    this.http.post<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) => {
+    let token = this.cookieService.get("jwt");
+    if (token === "") HttpService.onError("No token");
+
+    this.http.post<HttpResponse<T>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<T>(response, implementation, onFailure);
     });
   }
   public postWithReturnType<T, R>(endpoint : string, body : T, implementation : (data : R) => void, onFailure : () => void = () => {}) {
-    this.http.post<HttpResponse<R>>(this.url + endpoint, body).subscribe((response) => {
+    let token = this.cookieService.get("jwt");
+    if (token === "") HttpService.onError("No token");
+
+    this.http.post<HttpResponse<R>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<R>(response, implementation, onFailure);
     });
   }
 
   public put<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
-    this.http.put<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) => {
+    let token = this.cookieService.get("jwt");
+    if (token === "") HttpService.onError("No token");
+
+    this.http.put<HttpResponse<T>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<T>(response, implementation, onFailure);
     });
   }
 
   public delete<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
-    this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body}).subscribe((response) => {
+    let token = this.cookieService.get("jwt");
+    if (token === "") HttpService.onError("No token");
+
+    this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body, headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<T>(response, implementation, onFailure);
     });
   }

@@ -31,6 +31,6 @@ export class ShoppingCartListItemComponent implements OnInit {
   }
 
   onDelete() {
-
+    this.shoppingCartService.deleteFromShoppingCart(this.product.product);
   }
 }

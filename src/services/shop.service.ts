@@ -46,7 +46,14 @@ export class ShopService {
     }
   }
 
+  turnOffAllTags() {
+    this.tags = [];
+  }
   setSearchName(name : string) {
     this.searchedName = name;
+  }
+
+  getSearchName() : string {
+    return this.searchedName;
   }
 }

@@ -29,9 +29,11 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.shoppingCart.onShoppingCartChanged(this.onShoppingCartChanged.bind(this));
-    // call immediately to update card on route change
-    this.onShoppingCartChanged(this.shoppingCart.getCart());
-    this.onResize(null);
+    this.shoppingCart.getCart((data) => {
+      this.onShoppingCartChanged(data);
+      // call immediately to update card on route change
+      this.onResize(null);
+    });
   }
 
   ngOnDestroy(): void {

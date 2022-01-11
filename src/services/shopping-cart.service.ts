@@ -14,13 +14,6 @@ export class ShoppingCartService {
   private shoppingCart : ShoppingCartModel = new ShoppingCartModel();
 
   constructor(private http : HttpService, private login : LoginService, private router : Router) {
-    let p = {product: new ProductModel(), amount: 4};
-    p.product.name = "Houten Tafel";
-    p.product.specs = "tafel, hout";
-    p.product.price = 200.99;
-    p.product.description = "Een van de beste tafels die je kan kopen. Alleen de metalen tafel is beter.";
-    p.product.image = "tafel.jpg"
-    this.shoppingCart.products.push(p);
   }
 
   openCartAndLogin() {
@@ -37,7 +30,11 @@ export class ShoppingCartService {
   addToCartAndLogin(product : ProductModel) {
     if (!this.login.isLoggedIn()) {
       this.login.openLoginPopup(() => {
-        this.addToCart(product);
+        this.getShoppingCart((data) => {
+          if (data !== null)
+            this.shoppingCart = this.mergeShoppingCarts(data, this.shoppingCart);
+          this.addToCart(product);
+        });
       });
     }
     else {
@@ -45,8 +42,12 @@ export class ShoppingCartService {
     }
   }
 
-  getCart() : ShoppingCartModel {
-    return this.shoppingCart;
+  getCart(callback : (data: ShoppingCartModel) => void)  {
+    if (this.login.isLoggedIn())
+      this.getShoppingCart((data) => {
+        this.shoppingCart = data;
+        callback(data);
+      });
   }
 
   private addToCart(model : ProductModel) {
@@ -60,7 +61,7 @@ export class ShoppingCartService {
     if (!found) {
       this.shoppingCart.products.push({product: model, amount: 1});
     }
-
+    this.setShoppingCart(this.shoppingCart, () => {});
     this._onShoppingCartChanged.emit(this.shoppingCart);
   }
 
@@ -72,12 +73,49 @@ export class ShoppingCartService {
     return this._onShoppingCartChanged.subscribe(event);
   }
 
+  public deleteFromShoppingCart(product : ProductModel) {
+    for (let i = 0; i < this.shoppingCart.products.length; i++) {
+      if (this.shoppingCart.products[i].product.id === product.id) {
+        this.shoppingCart.products.splice(i, 1);
+      }
+    }
+  }
+
   public updateProductAmount(product : ProductModel, amount : number) {
     for (let i = 0; i < this.shoppingCart.products.length; i++) {
       if (this.shoppingCart.products[i].product.name === product.name) {
         this.shoppingCart.products[i].amount = amount;
+        this.setShoppingCart(this.shoppingCart, () => {});
         return;
       }
     }
+  }
+
+  private mergeShoppingCarts(cart1 : ShoppingCartModel, cart2 : ShoppingCartModel) : ShoppingCartModel {
+    let concat = cart1.products.concat(cart2.products);
+    let result : {product: ProductModel, amount: number}[] = [];
+    for (let i = 0; i < concat.length; i++) {
+      let found = false;
+      for (let j = 0; j < result.length; j++) {
+        if (concat[i].product.id === result[j].product.id) {
+          result[j].amount += concat[i].amount
+          found = true;
+        }
+      }
+      if (!found) {
+        result.push(concat[i]);
+      }
+    }
+    let newCart = new ShoppingCartModel();
+    newCart.products = result;
+    return newCart;
+  }
+
+  private getShoppingCart(callback : (cart : ShoppingCartModel) => void) {
+    this.http.get<ShoppingCartModel>("/cart", new Map<string, string>(), callback);
+  }
+
+  private setShoppingCart(cart : ShoppingCartModel, callback : (cart : ShoppingCartModel) => void) {
+    this.http.post<ShoppingCartModel>("/cart", cart, callback, () => {});
   }
 }

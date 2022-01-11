@@ -31,6 +31,6 @@ export class ShoppingCartListComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate([""]);
+    this.router.navigate([".."]);
   }
 }

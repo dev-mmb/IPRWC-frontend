@@ -31,8 +31,7 @@ export class ShoppingCartService {
     if (!this.login.isLoggedIn()) {
       this.login.openLoginPopup(() => {
         this.getShoppingCart((data) => {
-          if (data !== null)
-            this.shoppingCart = this.mergeShoppingCarts(data, this.shoppingCart);
+          this.shoppingCart = data;
           this.addToCart(product);
         });
       });
@@ -77,6 +76,7 @@ export class ShoppingCartService {
     for (let i = 0; i < this.shoppingCart.products.length; i++) {
       if (this.shoppingCart.products[i].product.id === product.id) {
         this.shoppingCart.products.splice(i, 1);
+        this.setShoppingCart(this.shoppingCart, () => {});
       }
     }
   }
@@ -89,26 +89,6 @@ export class ShoppingCartService {
         return;
       }
     }
-  }
-
-  private mergeShoppingCarts(cart1 : ShoppingCartModel, cart2 : ShoppingCartModel) : ShoppingCartModel {
-    let concat = cart1.products.concat(cart2.products);
-    let result : {product: ProductModel, amount: number}[] = [];
-    for (let i = 0; i < concat.length; i++) {
-      let found = false;
-      for (let j = 0; j < result.length; j++) {
-        if (concat[i].product.id === result[j].product.id) {
-          result[j].amount += concat[i].amount
-          found = true;
-        }
-      }
-      if (!found) {
-        result.push(concat[i]);
-      }
-    }
-    let newCart = new ShoppingCartModel();
-    newCart.products = result;
-    return newCart;
   }
 
   private getShoppingCart(callback : (cart : ShoppingCartModel) => void) {

@@ -11,16 +11,11 @@ import {LoginService} from "../../services/login.service";
 export class ShoppingCartComponent implements OnInit {
   cart : ShoppingCartModel = new ShoppingCartModel();
 
-  constructor(private cartService : ShoppingCartService, private loginService : LoginService) { }
+  constructor(private cartService : ShoppingCartService) { }
 
   ngOnInit(): void {
-    console.log("getting");
     this.cartService.getCart((data) => {
       this.cart = data;
     });
-  }
-
-  onSearch(event : string) {
-
   }
 }

@@ -29,8 +29,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onSubmit() {
-    let p = this.bcryptPassword(this.password);
-    this.login.createAccount(this.username, p, () => {this.onSuccess()}, () => {this.onFailure()});
+    this.login.createAccount(this.username, this.password, () => {this.onSuccess()}, () => {this.onFailure()});
   }
 
   onSuccess() {
@@ -43,7 +42,5 @@ export class CreateAccountComponent implements OnInit {
   areBothPasswordsTheSame() : boolean{
     return (this.password === this.secondPassword);
   }
-  private bcryptPassword(password : string) : string {
-    return bcrypt.hashSync(password);
-  }
+
 }

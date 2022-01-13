@@ -4,6 +4,7 @@ import {LoginComponent} from "../app/login/login.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CookieService} from "ngx-cookie-service";
 import jwt_decode from 'jwt-decode';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 export class LoginService {
   private loggedIn : boolean = false;
   private onSuccess : () => void;
+  private md5 : Md5 = new Md5();
 
   constructor(private http : HttpService, private modalService : NgbModal, private cookieService : CookieService) {
     this.onSuccess = () => {};
@@ -26,26 +28,28 @@ export class LoginService {
   }
 
   login(username : string, password : string, onSuccess : () => void, onFailure : () => void) {
-    this.http.postWithReturnType<{username : string, password : string}, {token: string}>(
-      "/account/authenticate",
-      {username: username, password: password},
-      (token) => {
-        this.handleLoginResult(token);
-        this.loggedIn = true;
-        onSuccess();
-        this.onSuccess();
-      },
-      onFailure
-    );
+    let hash : string = Md5.hashStr(password);
+    this.http.postWithReturnType<{email : string, password : string}, {token: string}>(
+        "/account/authenticate",
+        {email: username, password: hash},
+        (token) => {
+          this.handleLoginResult(token);
+          this.loggedIn = true;
+          onSuccess();
+          this.onSuccess();
+        },
+        onFailure
+      );
   }
 
   createAccount(username : string, password : string, onSuccess : () => void, onFailure : () => void) {
+    let hash : string = Md5.hashStr(password);
     this.http.post<{email : string, password : string}>(
-      "/account/create",
-      {email: username, password: password},
-      onSuccess,
-      onFailure
-    );
+        "/account/create",
+        {email: username, password: hash},
+        onSuccess,
+        onFailure
+      );
   }
 
   private handleLoginResult(t : {token: string}) {

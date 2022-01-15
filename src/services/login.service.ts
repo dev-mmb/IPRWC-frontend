@@ -5,6 +5,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CookieService} from "ngx-cookie-service";
 import jwt_decode from 'jwt-decode';
 import {Md5} from 'ts-md5/dist/md5';
+import {AccountDetailsModel} from "../app/account/account-details.model";
+import {DecodedJwtModel} from "./decoded-jwt.model";
 
 @Injectable({
   providedIn: 'root'
@@ -52,8 +54,18 @@ export class LoginService {
       );
   }
 
+  getAccountDetails(onSuccess : (account : AccountDetailsModel) => void, onFailure : () => void) {
+    let token = this.cookieService.get("jwt");
+    if (token === "") onFailure();
+    let jwt : DecodedJwtModel = jwt_decode(token);
+    let account = new AccountDetailsModel();
+    account.email = jwt.sub;
+    account.roles = jwt.roles;
+    onSuccess(account);
+  }
+
   private handleLoginResult(t : {token: string}) {
-    let jwt : {sub: string, exp: number, iat: number}= jwt_decode(t.token);
+    let jwt : DecodedJwtModel = jwt_decode(t.token);
     this.cookieService.set("jwt", t.token, jwt.exp, undefined, undefined, true);
   }
 }

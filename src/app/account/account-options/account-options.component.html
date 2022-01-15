@@ -1,0 +1,22 @@
+<div class="options-container">
+  <div class="option-container">
+    <app-account-option (onSelect)="onSelectOverzicht()"
+                        [option]="getOverzichtOption()"
+                        [ngClass]="selectedOption === getOverzichtOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+  </div>
+  <div class="option-container">
+    <app-account-option (onSelect)="onSelectBestellingen()"
+                        [option]="getBestellingenOption()"
+                        [ngClass]="selectedOption === getBestellingenOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+  </div>
+  <div class="option-container">
+    <app-account-option (onSelect)="onSelectAdmin()"
+                        [option]="getAdminOption()"
+                        [ngClass]="selectedOption === getAdminOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+  </div>
+  <div class="option-container">
+    <app-account-option (onSelect)="onSelectUitloggen()"
+                        [option]="getUitloggenOption()"
+                        [ngClass]="selectedOption === getUitloggenOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+  </div>
+</div>

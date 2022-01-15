@@ -1,0 +1,6 @@
+<div class="order-container">
+  <div *ngFor="let order of orders" #orders>
+    <app-order-card [order]="order" id="{{order.id}}"></app-order-card>
+  </div>
+</div>
+

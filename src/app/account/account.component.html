@@ -1,0 +1,11 @@
+<app-shopping-cart-navigation-bar></app-shopping-cart-navigation-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <app-account-options (onSelectEvent)="onOptionSelect($event)"></app-account-options>
+    </div>
+    <div class="col-sm-8">
+      <app-account-content [selectedOption]="selectedOption" (orderClicked)="onOrderClicked($event)"></app-account-content>
+    </div>
+  </div>
+</div>

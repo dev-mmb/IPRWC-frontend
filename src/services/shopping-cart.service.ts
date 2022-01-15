@@ -2,9 +2,9 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {LoginService} from "./login.service";
 import {ProductModel} from "../app/shop/ProductModel";
-import {Router} from "@angular/router";
 import {ShoppingCartModel} from "../app/shopping-cart/shopping-cart.model";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +65,7 @@ export class ShoppingCartService {
   }
 
   private openCart() {
-    this.router.navigate(["shopping-cart-component"]).then();
+    this.router.navigate(["/shopping-cart-component"]);
   }
 
   public onShoppingCartChanged(event : (cart : ShoppingCartModel) => void) : Subscription {

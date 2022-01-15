@@ -1,0 +1,3 @@
+<app-account-overview *ngIf="selectedOption === getOverzichtOption()" (orderClicked)="onOrderClicked($event)"></app-account-overview>
+<app-account-orders   *ngIf="selectedOption === getBestellingenOption()" [orderToScrollTo]="orderToScrollTo"></app-account-orders>
+<app-account-admin    *ngIf="selectedOption === getAdminOption()"></app-account-admin>

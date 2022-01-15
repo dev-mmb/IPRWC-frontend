@@ -1,0 +1,17 @@
+@import "src/styles";
+
+button {
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  background: none!important;
+  padding: 0!important;
+  &:hover {
+    color: $IPRWC-blue;
+  }
+}
+
+

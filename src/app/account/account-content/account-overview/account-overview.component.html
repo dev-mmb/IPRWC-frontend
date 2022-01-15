@@ -1,0 +1,9 @@
+<div class="account-email">
+  Hallo, {{account.email}}
+</div>
+<div class="orders-title">
+  Je bestellingen:
+</div>
+<div *ngFor="let order of orders" (click)="onOrderClicked(order)">
+  <app-order-preview-card [order]="order"></app-order-preview-card>
+</div>

@@ -1,0 +1,20 @@
+<div class="container preview-card">
+  <div class="row">
+    <div class="col">
+      <div class="image-container">
+        <img class="img-fluid" src="http://localhost:8080/product_image/{{getProductImage()}}" alt="product">
+      </div>
+    </div>
+    <div class="col">
+      <div class="order-status">
+        Onderweg
+      </div>
+      <div class="order-date">
+        {{order.createdAt}}
+      </div>
+      <div class="order-price">
+        {{getTotalOrderPrice()}}
+      </div>
+    </div>
+  </div>
+</div>

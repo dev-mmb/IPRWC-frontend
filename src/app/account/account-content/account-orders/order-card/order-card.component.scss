@@ -1,0 +1,14 @@
+@import "src/styles";
+
+.order-card-container {
+  background-color: $IPRWC-blue-white;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 80%;
+}
+.total-price {
+  color: $IPRWC-red;
+}
+.order-status {
+  color: darkgreen;
+}

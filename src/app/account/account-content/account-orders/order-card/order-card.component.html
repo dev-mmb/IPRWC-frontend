@@ -1,0 +1,25 @@
+<div class="order-card-container">
+  <div class="order-id">
+    order nummer: {{order.id}}
+  </div>
+  <div class="order-date">
+    {{order.createdAt}}
+  </div>
+  <div class="order-status">
+    Onderweg
+  </div>
+  <div class="product-cards" *ngFor="let product of order.shoppingCartProducts">
+    <app-order-card-product-card [product]="product"></app-order-card-product-card>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-danger" (click)="onDeleteOrder()">Annuleer</button>
+      </div>
+      <div class="col total-price">
+        {{getOrderTotalPrice()}}
+      </div>
+    </div>
+  </div>
+</div>
+

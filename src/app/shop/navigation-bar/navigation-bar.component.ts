@@ -12,6 +12,8 @@ import {ShoppingCartService} from "../../../services/shopping-cart.service";
 import {ProductModel} from "../ProductModel";
 import {ShoppingCartModel} from "../../shopping-cart/shopping-cart.model";
 import {Subscription} from "rxjs";
+import {LoginService} from "../../../services/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -24,7 +26,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   shouldUseMobileLayout = false;
   subscription : Subscription | null = null;
 
-  constructor(private shoppingCart : ShoppingCartService) {
+  constructor(private shoppingCart : ShoppingCartService, private login : LoginService, private router : Router) {
   }
 
   ngOnInit(): void {
@@ -42,6 +44,17 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
 
   onSearch(value : string) {
     this.onSearchEvent.emit(value);
+  }
+
+  isLoggedIn() : boolean {
+    return this.login.isLoggedIn()
+  }
+
+  onLogin() {
+    this.login.openLoginPopup(() => {});
+  }
+  onOpenAccountPage() {
+    this.router.navigate(["account-component"]);
   }
 
   onOpenShoppingCart() {

@@ -1,0 +1,27 @@
+@import "src/styles";
+
+.product-image {
+  width: 100px;
+  height: auto;
+}
+
+.product-order-card {
+  margin-bottom: 18px;
+  position: relative;
+  &:after {
+    content: "";
+    width: 70%;
+    height: 1px;
+    background: gray;
+    position: absolute;
+  }
+}
+.product-name {
+  font-weight: bold;
+}
+.price {
+  color: $IPRWC-red;
+}
+.product-cost {
+  margin-top: 60px;
+}

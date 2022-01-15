@@ -1,0 +1,18 @@
+@import "src/styles";
+
+.image-container {
+  height: auto;
+  width: 80px;
+  padding: 10px;
+}
+
+.preview-card {
+  margin-bottom: 20px;
+  background-color: $IPRWC-blue-white;
+}
+.order-status {
+  font-weight: bold;
+}
+.order-price {
+  color: $IPRWC-blue;
+}

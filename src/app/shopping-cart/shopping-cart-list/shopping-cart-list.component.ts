@@ -3,6 +3,8 @@ import {ShoppingCartModel} from "../shopping-cart.model";
 import {ShoppingCartService} from "../../../services/shopping-cart.service";
 import {OrderService} from "../../../services/order.service";
 import {Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {OrderPopupComponent} from "./order-popup/order-popup.component";
 
 @Component({
   selector: 'app-shopping-cart-list',
@@ -12,7 +14,7 @@ import {Router} from "@angular/router";
 export class ShoppingCartListComponent implements OnInit {
   @Input() shoppingCart : ShoppingCartModel = new ShoppingCartModel();
 
-  constructor(private orderService : OrderService, private router : Router) {
+  constructor(private orderService : OrderService, private router : Router, private modalService : NgbModal) {
   }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class ShoppingCartListComponent implements OnInit {
   }
 
   order() {
-
+    let ref = this.modalService.open(OrderPopupComponent);
   }
 
   back() {

@@ -1,0 +1,29 @@
+@import "src/styles";
+
+
+.selected-option {
+  animation-name: option-select;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.non-selected-option {
+  animation-name: option-unselect;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes option-select {
+  from {
+    padding-left: 0;
+  }
+  to {
+    padding-left: 20px;
+  }
+}
+@keyframes option-unselect {
+  from {
+    padding-left: 20px;
+  }
+  to {
+    padding-left: 0;
+  }
+}

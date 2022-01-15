@@ -1,0 +1,20 @@
+<div class="container product-order-card">
+  <div class="row">
+    <div class="col">
+      <div class="product-name">
+        {{product.product.name}}
+      </div>
+      <div class="product-image">
+        <img class="img-fluid" src="http://localhost:8080/product_image/{{product.product.image}}" alt="product">
+      </div>
+    </div>
+    <div class="col product-cost">
+      <div class="amount">
+        {{product.amount}} x
+      </div>
+      <div class="price">
+        {{product.product.price}}
+      </div>
+    </div>
+  </div>
+</div>

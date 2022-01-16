@@ -1,0 +1,20 @@
+<div class="tag-names">
+  {{getAllSelectedTags()}}
+</div>
+<div class="btn-group mr-3 d-inline-block">
+  <div ngbDropdown class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-outline-success" ngbDropdownToggle id="createTagDropdown">Maak nieuwe filter</button>
+    <div ngbDropdownMenu aria-labelledby="createTagDropdown">
+      <app-product-group-select (onCreateNewTag)="onNewTagCreated($event)"></app-product-group-select>
+    </div>
+  </div>
+
+  <div ngbDropdown class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <button class="btn btn-outline-primary" id="tagDropdown" ngbDropdownToggle>Filters</button>
+    <div ngbDropdownMenu aria-labelledby="tagDropdown" >
+      <div *ngFor="let tag of filterTags" >
+        <button ngbDropdownItem (click)="toggleDropdownItem(tag)" [ngClass]="{'filter-tag-selected': isTagSelected(tag)}">{{tag.name}}</button>
+      </div>
+    </div>
+  </div>
+</div>

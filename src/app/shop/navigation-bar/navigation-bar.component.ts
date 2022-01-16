@@ -25,12 +25,18 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   shoppingCartSizeString : string = "0";
   shouldUseMobileLayout = false;
   subscription : Subscription | null = null;
+  isLoggedIn = false;
 
   constructor(private shoppingCart : ShoppingCartService, private login : LoginService, private router : Router) {
   }
 
   ngOnInit(): void {
     this.subscription = this.shoppingCart.onShoppingCartChanged(this.onShoppingCartChanged.bind(this));
+    this.login.isLoggedIn(() => {
+      this.isLoggedIn = true;
+    }, () => {
+      this.isLoggedIn = false;
+    });
     this.shoppingCart.getCart((data) => {
       this.onShoppingCartChanged(data);
       // call immediately to update card on route change
@@ -46,12 +52,10 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     this.onSearchEvent.emit(value);
   }
 
-  isLoggedIn() : boolean {
-    return this.login.isLoggedIn()
-  }
-
   onLogin() {
-    this.login.openLoginPopup(() => {});
+    this.login.openLoginPopup(() => {
+      this.isLoggedIn = true;
+    });
   }
   onOpenAccountPage() {
     this.router.navigate(["account-component"]);

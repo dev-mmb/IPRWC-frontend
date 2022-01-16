@@ -17,36 +17,37 @@ export class ShoppingCartService {
   }
 
   openCartAndLogin() {
-    if (!this.login.isLoggedIn()) {
+    this.login.isLoggedIn(() => {
+      this.openCart();
+    }, () => {
       this.login.openLoginPopup(() => {
         this.openCart();
       });
-    }
-    else {
-      this.openCart();
-    }
+    });
   }
 
   addToCartAndLogin(product : ProductModel) {
-    if (!this.login.isLoggedIn()) {
+    // if islogged in
+    this.login.isLoggedIn(() => {
+      this.addToCart(product);
+    }, () => {
+      // else open popup
       this.login.openLoginPopup(() => {
         this.getShoppingCart((data) => {
           this.shoppingCart = data;
           this.addToCart(product);
         });
       });
-    }
-    else {
-      this.addToCart(product);
-    }
+    });
   }
 
   getCart(callback : (data: ShoppingCartModel) => void)  {
-    if (this.login.isLoggedIn())
+    this.login.isLoggedIn(() => {
       this.getShoppingCart((data) => {
         this.shoppingCart = data;
         callback(data);
       });
+    }, () => {});
   }
 
   private addToCart(model : ProductModel) {

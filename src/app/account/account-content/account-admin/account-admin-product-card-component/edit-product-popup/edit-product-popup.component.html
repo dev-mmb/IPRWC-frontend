@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="modal-header login">
+    <div class="modal-title">Verander Product</div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form #f="ngForm">
+    <div class="modal-body">
+      <div>Naam</div>
+      <input type="text"
+             [value]="product.name"
+             required
+             id="edit_product_product_name"
+             (keyup)="onProductNameChange($event)">
+      <app-edit-product-filter-tags [product]="product"></app-edit-product-filter-tags>
+      <div>Beschrijving</div>
+      <textarea [value]="product.description"
+                required
+                id="edit_product_product_description"
+                (keyup)="onChangeDescription($event)">
+      </textarea>
+      <div>prijs: </div>
+      <input type="number" (change)="onChangeProductPrice($event)" [value]="product.price">
+      <div>specificaties: </div>
+      <input type="text" (keyup)="onProductSpecsChanged($event)" [value]="product.specs">
+      <div>
+        <app-upload-file [product]="product"></app-upload-file>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="onSubmit()">Opslaan</button>
+    </div>
+  </form>
+</div>

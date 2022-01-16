@@ -33,6 +33,12 @@ import { GenericPopupComponent } from './generic-popup/generic-popup.component';
 import { OrderPreviewCardComponent } from './account/account-content/account-overview/order-preview-card/order-preview-card.component';
 import { OrderCardComponent } from './account/account-content/account-orders/order-card/order-card.component';
 import { OrderCardProductCardComponent } from './account/account-content/account-orders/order-card/order-card-product-card/order-card-product-card.component';
+import { AccountAdminProductCardComponentComponent } from './account/account-content/account-admin/account-admin-product-card-component/account-admin-product-card-component.component';
+import { EditProductPopupComponent } from './account/account-content/account-admin/account-admin-product-card-component/edit-product-popup/edit-product-popup.component';
+import { EditProductFilterTagsComponent } from './account/account-content/account-admin/account-admin-product-card-component/edit-product-popup/edit-product-filter-tags/edit-product-filter-tags.component';
+import { ProductGroupSelectComponent } from './account/account-content/account-admin/account-admin-product-card-component/edit-product-popup/edit-product-filter-tags/product-group-select/product-group-select.component';
+import { UploadFileComponent } from './account/account-content/account-admin/account-admin-product-card-component/edit-product-popup/upload-file/upload-file.component';
+import { AddProductComponent } from './account/account-content/account-admin/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +69,13 @@ import { OrderCardProductCardComponent } from './account/account-content/account
     GenericPopupComponent,
     OrderPreviewCardComponent,
     OrderCardComponent,
-    OrderCardProductCardComponent
+    OrderCardProductCardComponent,
+    AccountAdminProductCardComponentComponent,
+    EditProductPopupComponent,
+    EditProductFilterTagsComponent,
+    ProductGroupSelectComponent,
+    UploadFileComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

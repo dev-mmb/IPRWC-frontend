@@ -1,0 +1,29 @@
+<form #f="ngForm">
+  <label for="filter_tag_name">Naam</label>
+  <input type="text"
+           required
+           id="filter_tag_name" (keyup)="onSetName($event)">
+    <div class="container">
+
+      <div class="row button-row">
+
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="filterGroupDropdown" ngbDropdownToggle>{{tag.filterGroup.name}}</button>
+
+            <div ngbDropdownMenu aria-labelledby="filterGroupDropdown">
+              <input type="text" ngbDropdownItem (keyup)="onCreateGroup($event)" class="add-group-name">
+              <div *ngFor="let g of groups" >
+                <button ngbDropdownItem (click)="setFilterGroup(g)">{{g.name}}</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col">
+          <button class="btn btn-primary save-button" (click)="createFilterTag()" [disabled]="!shouldEnableCreateButton()">Sla op</button>
+        </div>
+      </div>
+    </div>
+</form>

@@ -12,7 +12,6 @@ import {DecodedJwtModel} from "./decoded-jwt.model";
   providedIn: 'root'
 })
 export class LoginService {
-  private loggedIn : boolean = false;
   private onSuccess : () => void;
   private md5 : Md5 = new Md5();
 
@@ -20,8 +19,16 @@ export class LoginService {
     this.onSuccess = () => {};
   }
 
-  isLoggedIn() : boolean {
-    return this.cookieService.get("jwt") !== "";
+  isLoggedIn(onTrue : () => void, onFalse : () => void) {
+    let jwt = this.cookieService.get("jwt") ;
+    if (jwt === "") {
+      onFalse();
+      return;
+    }
+    this.http.get("/jwt/validate", new Map<string, string>(), (value : boolean) => {
+      if (value) onTrue();
+      else onFalse();
+    }, onFalse);
   }
 
   openLoginPopup(onSuccess : () => void) {
@@ -36,7 +43,6 @@ export class LoginService {
         {email: username, password: hash},
         (token) => {
           this.handleLoginResult(token);
-          this.loggedIn = true;
           onSuccess();
           this.onSuccess();
         },

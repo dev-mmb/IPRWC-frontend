@@ -1,0 +1,20 @@
+<div class="container card card-pad">
+  <div class="row">
+    <div class="col-md image">
+      <div class="image-container">
+        <img src="http://localhost:8080/product_image/{{product.image}}" class="img-fluid" alt="an image of the described product">
+      </div>
+    </div>
+    <div class="col-md-7 product-specs">
+      <div class="product-name">{{product.name}}</div>
+      <div class="product-specs-data">{{product.specs}}</div>
+      <div class="product-description">{{product.description}}</div>
+    </div>
+    <div class="col-md-2 price-and-button">
+      <div class="price">{{product.price}}</div>
+      <div class="buy_button">
+        <button class="btn btn-primary" (click)="editButtonClicked()">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

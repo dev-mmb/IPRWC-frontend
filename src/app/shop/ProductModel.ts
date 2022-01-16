@@ -1,7 +1,8 @@
+import {FilterTagModel} from "./search-filters/search-filter-group/filterTag.model";
 
 export class ProductModel  {
   description: string;
-  filterTags: [{name : string, filterGroup : {name : string}}];
+  filterTags: FilterTagModel[];
   id: string;
   image: string;
   name: string;
@@ -10,7 +11,7 @@ export class ProductModel  {
 
   constructor() {
     this.description = "";
-    this.filterTags = [{name: "", filterGroup: {name: ""}}];
+    this.filterTags = [];
     this.id = "";
     this.image = "";
     this.name = "";

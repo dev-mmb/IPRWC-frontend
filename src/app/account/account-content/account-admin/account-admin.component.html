@@ -1,1 +1,4 @@
-<p>account-admin works!</p>
+<button class="btn btn-primary" (click)="openAddProductPopup()">Voeg toe</button>
+<div *ngFor="let product of products">
+  <app-account-admin-product-card-component [product]="product" class="product" (onProductChanged)="onProductChanged()"></app-account-admin-product-card-component>
+</div>

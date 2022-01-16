@@ -6,7 +6,7 @@
   </div>
   <form #f="ngForm">
     <div class="modal-body">
-      <label for="login-component-username-input">email</label>
+      <label for="login-component-username-input">Email</label>
       <input type="text" class="form-control username"
              id="login-component-username-input"
              name="username"
@@ -15,7 +15,7 @@
              #username="ngModel"
              [ngClass]="{'is-invalid': !username.valid && username.touched}"
              (keyup)="onKeyUsername($event)">
-      <label for="login-component-password-input">wachtwoord</label>
+      <label for="login-component-password-input">Wachtwoord</label>
       <input type="password" class="form-control password"
              id="login-component-password-input"
              name="password"
@@ -24,7 +24,7 @@
              #password="ngModel"
              [ngClass]="{'is-invalid': !password.valid && password.touched}"
              (keyup)="onKeyPassword($event)">
-      <label for="login-component-password-input-two">herhaal wachtwoord</label>
+      <label for="login-component-password-input-two">Herhaal Wachtwoord</label>
       <input type="password" class="form-control password"
              id="login-component-password-input-two"
              name="password-two"

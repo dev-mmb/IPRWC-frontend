@@ -37,6 +37,14 @@ export class ShopService {
     this.http.get<ProductModel[]>("/product", map, implementation);
   }
 
+  changeProduct(product : ProductModel, onSuccess : (p : ProductModel) => void, onFailure : () => void) {
+    this.http.put("/product", product, onSuccess, onFailure);
+  }
+
+  createProduct(product : ProductModel, onSuccess : (p : ProductModel[]) => void, onFailure : () => void) {
+    this.http.post("/product", [product], onSuccess, onFailure);
+  }
+
   toggleTag(tag : FilterTagModel) {
     if (this.tags.includes(tag)) {
       this.tags.splice(this.tags.indexOf(tag), 1);

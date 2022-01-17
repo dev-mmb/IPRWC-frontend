@@ -1,10 +1,10 @@
 <app-navigation-bar (onSearchEvent)="onSearch($event)"></app-navigation-bar>
 <div class="container shop">
   <div class="row">
-    <div class="col-md-auto search-filters">
+    <div class="col-2 search-filters">
       <app-search-filters (onSelectEvent)="onTagSelected($event)" class="search-filters-mobile"></app-search-filters>
     </div>
-    <div class="col">
+    <div class="col-8">
       <app-product-cards></app-product-cards>
     </div>
   </div>

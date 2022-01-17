@@ -33,6 +33,16 @@ export class LoginService {
     }
   }
 
+  isAdmin() : boolean {
+    let jwt : DecodedJwtModel = jwt_decode(this.cookieService.get("jwt"));
+    for (let i = 0; i < jwt.roles.length; i++) {
+      if (jwt.roles[i].authority === "ADMIN") {
+        return true;
+      }
+    }
+    return false;
+  }
+
   openLoginPopup(onSuccess : () => void) {
     this.onSuccess = onSuccess;
     this.modalService.open(LoginComponent);

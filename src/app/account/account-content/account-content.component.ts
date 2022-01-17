@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewC
 import {AccountOptions} from "../account-options/account-options.model";
 import {OrderModel} from "../../shopping-cart/shopping-cart-list/order-popup/order.model";
 import {AccountOrdersComponent} from "./account-orders/account-orders.component";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-account-content',

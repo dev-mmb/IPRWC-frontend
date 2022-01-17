@@ -1,5 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AccountOptions} from "./account-options.model";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-account-options',
@@ -10,11 +11,14 @@ export class AccountOptionsComponent implements OnInit {
   @Output() onSelectEvent : EventEmitter<AccountOptions> = new EventEmitter<AccountOptions>();
   selectedOption : AccountOptions = AccountOptions.OVERZICHT;
   shouldUseMobileLayout = false;
+  shouldShowAdmin = false;
 
-  constructor() { }
+  constructor(private loginService : LoginService) { }
 
   ngOnInit(): void {
     this.onResize(null);
+    this.shouldShowAdmin = this.loginService.isAdmin();
+    console.log(this.shouldShowAdmin);
   }
 
   onSelectOverzicht() {

@@ -29,7 +29,13 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onSubmit() {
-    this.login.createAccount(this.username, this.password, () => {this.onSuccess()}, () => {this.onFailure()});
+    this.login.createAccount(this.username, this.password, () => {
+      this.onSuccess()
+      this.activeModal.close();
+    }, () => {
+      this.onFailure()
+      this.activeModal.close();
+    });
   }
 
   onSuccess() {

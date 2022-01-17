@@ -1,4 +1,4 @@
-<div class="options-container">
+<div class="options-container" *ngIf="!shouldUseMobileLayout">
   <div class="option-container">
     <app-account-option (onSelect)="onSelectOverzicht()"
                         [option]="getOverzichtOption()"
@@ -16,7 +16,34 @@
   </div>
   <div class="option-container">
     <app-account-option (onSelect)="onSelectUitloggen()"
-                        [option]="getUitloggenOption()"
-                        [ngClass]="selectedOption === getUitloggenOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+                        [option]="getUitloggenOption()" ></app-account-option>
   </div>
+</div>
+
+<div class="options-container-mobile" *ngIf="shouldUseMobileLayout">
+  <div class="d-inline-block" ngbDropdown>
+    <button class="btn btn-primary" id="account-options-dropdown" ngbDropdownToggle>Opties</button>
+    <div ngbDropdownMenu aria-labelledby="account-options-dropdown">
+      <div class="option-container">
+        <app-account-option (onSelect)="onSelectOverzicht()"
+                            [option]="getOverzichtOption()"
+                            [ngClass]="selectedOption === getOverzichtOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+      </div>
+      <div class="option-container">
+        <app-account-option (onSelect)="onSelectBestellingen()"
+                            [option]="getBestellingenOption()"
+                            [ngClass]="selectedOption === getBestellingenOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+      </div>
+      <div class="option-container">
+        <app-account-option (onSelect)="onSelectAdmin()"
+                            [option]="getAdminOption()"
+                            [ngClass]="selectedOption === getAdminOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
+      </div>
+      <div class="option-container">
+        <app-account-option (onSelect)="onSelectUitloggen()"
+                            [option]="getUitloggenOption()" ></app-account-option>
+      </div>
+    </div>
+  </div>
+
 </div>

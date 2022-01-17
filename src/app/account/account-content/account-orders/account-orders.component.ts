@@ -12,6 +12,8 @@ import {
 import {OrderModel} from "../../../shopping-cart/shopping-cart-list/order-popup/order.model";
 import {OrderService} from "../../../../services/order.service";
 import {DOCUMENT} from "@angular/common";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {GenericPopupComponent} from "../../../generic-popup/generic-popup.component";
 
 @Component({
   selector: 'app-account-orders',
@@ -24,7 +26,7 @@ export class AccountOrdersComponent implements OnInit, AfterViewInit {
   @Input() orderToScrollTo : OrderModel | null = null;
   orders : OrderModel[] = [];
 
-  constructor(private orderService : OrderService) {
+  constructor(private orderService : OrderService, private modalService : NgbModal) {
   }
 
   ngOnInit(): void {
@@ -53,6 +55,22 @@ export class AccountOrdersComponent implements OnInit, AfterViewInit {
         }
       }
     }, 100);
+  }
 
+  onDeleteOrder(order : OrderModel) {
+    let ref = this.modalService.open(GenericPopupComponent).componentInstance;
+    ref.shouldHideDenyButton = false;
+    ref.title = "Weet je zeker dat je deze bestelling wilt annuleren?";
+    ref.confirmText = "Annuleer Bestelling";
+    ref.denyText = "Sluit";
+    ref.confirm = () => {
+      this.orderService.deleteOrder(order, () => {
+        this.ngAfterViewInit();
+      }, () => {
+        let ref2 = this.modalService.open(GenericPopupComponent).componentInstance;
+        ref2.title = "Er is iets mis gegaan";
+        ref2.confirmText = "Sluit";
+      });
+    }
   }
 }

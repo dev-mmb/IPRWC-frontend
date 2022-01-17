@@ -55,6 +55,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   onLogin() {
     this.login.openLoginPopup(() => {
       this.isLoggedIn = true;
+      this.onOpenAccountPage();
     });
   }
   onOpenAccountPage() {
@@ -89,6 +90,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event : any) {
-    this.shouldUseMobileLayout = (window.screen.width <= 991);
+    this.shouldUseMobileLayout = (window.screen.width <= 1058);
   }
 }

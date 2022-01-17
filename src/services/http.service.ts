@@ -19,6 +19,14 @@ export class HttpService {
 
   // data is null if api call returns no data!!!!
   public get<T>(endpoint : string, args : Map<string, string>, implementation : (data : T) => void, onFailure : () => void = () => {}) {
+    endpoint = this.getEndpointWithArguments(endpoint, args);
+
+    this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) => {
+      HttpService.callImplementation<T>(response, implementation, onFailure);
+    });
+  }
+
+  public getWithToken<T>(endpoint : string, args : Map<string, string>, implementation : (data : T) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
     if (token === "") HttpService.onError("No token");
 
@@ -39,7 +47,6 @@ export class HttpService {
   }
   public postWithReturnType<T, R>(endpoint : string, body : T, implementation : (data : R) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
-    if (token === "") HttpService.onError("No token");
 
     this.http.post<HttpResponse<R>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
       HttpService.callImplementation<R>(response, implementation, onFailure);

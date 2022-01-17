@@ -11,6 +11,11 @@
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
+.options-container-mobile {
+  position: fixed;
+  z-index: 99 !important;
+  margin-top: -40px;
+}
 @keyframes option-select {
   from {
     padding-left: 0;

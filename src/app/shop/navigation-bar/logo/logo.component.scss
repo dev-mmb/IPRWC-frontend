@@ -2,9 +2,9 @@
 img {
   display: block;
   width: inherit;
+  margin-top: 5px;
   &:hover {
-    transform: scale(0.98);
-    border: #3f85a9 5px solid;
+    background-color: #387fab;
   }
 }
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OrderModel} from "../../../../shopping-cart/shopping-cart-list/order-popup/order.model";
 
 @Component({
@@ -9,7 +9,8 @@ import {OrderModel} from "../../../../shopping-cart/shopping-cart-list/order-pop
 export class OrderCardComponent implements OnInit {
   @Input()
   order : OrderModel = new OrderModel();
-
+  @Output()
+  onDeleteOrder = new EventEmitter<OrderModel>();
   constructor() { }
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class OrderCardComponent implements OnInit {
     return price.toFixed(2);
   }
 
-  onDeleteOrder() {
-
+  deleteOrder() {
+    this.onDeleteOrder.emit(this.order);
   }
 }

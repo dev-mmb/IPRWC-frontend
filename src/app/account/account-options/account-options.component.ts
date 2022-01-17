@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AccountOptions} from "./account-options.model";
 
 @Component({
@@ -9,10 +9,12 @@ import {AccountOptions} from "./account-options.model";
 export class AccountOptionsComponent implements OnInit {
   @Output() onSelectEvent : EventEmitter<AccountOptions> = new EventEmitter<AccountOptions>();
   selectedOption : AccountOptions = AccountOptions.OVERZICHT;
+  shouldUseMobileLayout = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.onResize(null);
   }
 
   onSelectOverzicht() {
@@ -44,5 +46,8 @@ export class AccountOptionsComponent implements OnInit {
   getUitloggenOption() {
     return AccountOptions.LOGOUT;
   }
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event : any) {
+    this.shouldUseMobileLayout = (window.screen.width <= 1058);
+  }
 }

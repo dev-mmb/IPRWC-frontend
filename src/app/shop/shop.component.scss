@@ -8,11 +8,18 @@ $search-filters-padding-left-mobile: 5vw;
 .search-filters {
   width: $search-filters-padding-left;
 }
+.search-filters-mobile {
 
+}
 // Large devices (desktops, 992px and up)
 @media (max-width: 992px) {
   .search-filters {
     padding-left: $search-filters-padding-left-mobile;
+  }
+  .search-filters-mobile {
+    position: fixed;
+    top: 140px;
+    z-index: 99 !important;
   }
   .shop {
     padding-left: 0;

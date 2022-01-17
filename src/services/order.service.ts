@@ -14,6 +14,9 @@ export class OrderService {
     this.http.post("/order", "null", onSuccess, onFailure);
   }
   getOrders(onSuccess : (orders : OrderModel[]) => void, onFailure : () => void) {
-    this.http.get("/order", new Map<string, string>(), onSuccess, onFailure);
+    this.http.getWithToken("/order", new Map<string, string>(), onSuccess, onFailure);
+  }
+  deleteOrder(order : OrderModel, onSuccess : () => void, onFailure : () => void) {
+    this.http.delete("/order", order, onSuccess, onFailure);
   }
 }

@@ -93,7 +93,7 @@ export class ShoppingCartService {
   }
 
   private getShoppingCart(callback : (cart : ShoppingCartModel) => void) {
-    this.http.get<ShoppingCartModel>("/cart", new Map<string, string>(), callback);
+    this.http.getWithToken<ShoppingCartModel>("/cart", new Map<string, string>(), callback);
   }
 
   private setShoppingCart(cart : ShoppingCartModel, callback : (cart : ShoppingCartModel) => void) {

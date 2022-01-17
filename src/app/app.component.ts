@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +7,6 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class AppComponent {
   title = 'IPRWC-frontend';
-  constructor(private cookieService : CookieService) {
-    //this.cookieService.delete("jwt");
-
+  constructor() {
   }
 }

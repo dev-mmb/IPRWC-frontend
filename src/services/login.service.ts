@@ -7,6 +7,7 @@ import jwt_decode from 'jwt-decode';
 import {Md5} from 'ts-md5/dist/md5';
 import {AccountDetailsModel} from "../app/account/account-details.model";
 import {DecodedJwtModel} from "./decoded-jwt.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LoginService {
   private onSuccess : () => void;
   private md5 : Md5 = new Md5();
 
-  constructor(private http : HttpService, private modalService : NgbModal, private cookieService : CookieService) {
+  constructor(private http : HttpService, private modalService : NgbModal, private cookieService : CookieService, private router : Router) {
     this.onSuccess = () => {};
   }
 
@@ -25,7 +26,7 @@ export class LoginService {
       onFalse();
       return;
     }
-    this.http.get("/jwt/validate", new Map<string, string>(), (value : boolean) => {
+    this.http.getWithToken("/jwt/validate", new Map<string, string>(), (value : boolean) => {
       if (value) onTrue();
       else onFalse();
     }, onFalse);
@@ -48,6 +49,10 @@ export class LoginService {
         },
         onFailure
       );
+  }
+  logout() {
+    this.cookieService.delete("jwt");
+    this.router.navigate([""]);
   }
 
   createAccount(username : string, password : string, onSuccess : () => void, onFailure : () => void) {

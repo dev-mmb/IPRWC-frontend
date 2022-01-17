@@ -35,4 +35,8 @@ export class ShoppingCartListComponent implements OnInit {
   back() {
     this.router.navigate([".."]);
   }
+
+  shouldDisableOrderButton() : boolean {
+    return this.shoppingCart.products.length === 0;
+  }
 }

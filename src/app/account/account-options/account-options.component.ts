@@ -18,7 +18,6 @@ export class AccountOptionsComponent implements OnInit {
   ngOnInit(): void {
     this.onResize(null);
     this.shouldShowAdmin = this.loginService.isAdmin();
-    console.log(this.shouldShowAdmin);
   }
 
   onSelectOverzicht() {

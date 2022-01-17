@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpResponse} from "../app/HttpResponse";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import {CookieService} from "ngx-cookie-service";
 export class HttpService {
   public static readonly RESPONSE_SUCCESS_CODE = "SUCCESS";
   public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
-  //https://limitless-bastion-9783240.herokuapp.com
+  // https://limitless-bastion-9783240.herokuapp.com
+  // http://localhost:8080
   private url : string = "https://limitless-bastion-9783240.herokuapp.com";
   private http : HttpClient;
 

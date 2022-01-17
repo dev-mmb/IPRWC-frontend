@@ -9,8 +9,8 @@ import {CookieService} from "ngx-cookie-service";
 export class HttpService {
   public static readonly RESPONSE_SUCCESS_CODE = "SUCCESS";
   public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
-
-  private url : string = "http://localhost:8080";
+  //https://blooming-cliffs-76615.herokuapp.com
+  private url : string = "https://blooming-cliffs-76615.herokuapp.com";
   private http : HttpClient;
 
   constructor(private h : HttpClient, private cookieService : CookieService) {

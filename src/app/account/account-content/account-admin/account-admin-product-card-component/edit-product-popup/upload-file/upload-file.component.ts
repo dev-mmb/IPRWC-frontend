@@ -20,8 +20,9 @@ export class UploadFileComponent implements OnInit {
     if (file) {
       let formData = new FormData();
       formData.append("file", file);
-      this.http.postWithReturnType("/product_image", formData,  (rf : {fileName: string, fileDownloadUri: string, fileType: string, size: number}) => {
-        this.product.image = rf.fileName;
+      this.http.postWithReturnType("/product_image", formData,  (filename : string) => {
+        this.product.image = filename;
+        console.log(this.product);
       });
     }
   }

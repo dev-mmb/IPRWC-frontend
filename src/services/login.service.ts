@@ -25,11 +25,12 @@ export class LoginService {
     if (jwt === "") {
       onFalse();
       return;
+    } else {
+      this.http.getWithToken("/jwt/validate", new Map<string, string>(), (value : boolean) => {
+        if (value) onTrue();
+        else onFalse();
+      }, onFalse);
     }
-    this.http.getWithToken("/jwt/validate", new Map<string, string>(), (value : boolean) => {
-      if (value) onTrue();
-      else onFalse();
-    }, onFalse);
   }
 
   openLoginPopup(onSuccess : () => void) {

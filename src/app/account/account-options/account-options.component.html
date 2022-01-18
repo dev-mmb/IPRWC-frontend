@@ -36,7 +36,7 @@
       </div>
       <div class="option-container">
         <app-account-option (onSelect)="onSelectAdmin()"
-                            [option]="getAdminOption()"
+                            [option]="getAdminOption()" *ngIf="shouldShowAdmin"
                             [ngClass]="selectedOption === getAdminOption() ? 'selected-option': 'non-selected-option'"></app-account-option>
       </div>
       <div class="option-container">

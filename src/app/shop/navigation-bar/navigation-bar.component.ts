@@ -31,6 +31,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.onResize(null);
     this.subscription = this.shoppingCart.onShoppingCartChanged(this.onShoppingCartChanged.bind(this));
     this.login.isLoggedIn(() => {
       this.isLoggedIn = true;

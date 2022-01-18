@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpResponse} from "../app/HttpResponse";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
@@ -10,6 +10,9 @@ import jwt_decode from "jwt-decode";
 export class HttpService {
   public static readonly RESPONSE_SUCCESS_CODE = "SUCCESS";
   public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
+  onErrorEvent : EventEmitter<string> = new EventEmitter<string>();
+  onSuccesfulRequestEvent = new EventEmitter<null>();
+
   // https://limitless-bastion-9783240.herokuapp.com
   // http://localhost:8080
   private url : string = "https://limitless-bastion-9783240.herokuapp.com";
@@ -24,52 +27,64 @@ export class HttpService {
     endpoint = this.getEndpointWithArguments(endpoint, args);
 
     this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) => {
-      HttpService.callImplementation<T>(response, implementation, onFailure);
+      this.callImplementation<T>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
 
   public getWithToken<T>(endpoint : string, args : Map<string, string>, implementation : (data : T) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
-    if (token === "") HttpService.onError("No token");
+    if (token === "") this.onError("No token");
 
     endpoint = this.getEndpointWithArguments(endpoint, args);
 
     this.http.get<HttpResponse<T>>(this.url + endpoint, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
-      HttpService.callImplementation<T>(response, implementation, onFailure);
+      this.callImplementation<T>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
 
   public post<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
-    if (token === "") HttpService.onError("No token");
+    if (token === "") this.onError("No token");
 
     this.http.post<HttpResponse<T>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
-      HttpService.callImplementation<T>(response, implementation, onFailure);
+      this.callImplementation<T>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
   public postWithReturnType<T, R>(endpoint : string, body : T, implementation : (data : R) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
 
     this.http.post<HttpResponse<R>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
-      HttpService.callImplementation<R>(response, implementation, onFailure);
+      this.callImplementation<R>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
 
   public put<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
-    if (token === "") HttpService.onError("No token");
+    if (token === "") this.onError("No token");
 
     this.http.put<HttpResponse<T>>(this.url + endpoint, body, {headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
-      HttpService.callImplementation<T>(response, implementation, onFailure);
+      this.callImplementation<T>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
 
   public delete<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure : () => void = () => {}) {
     let token = this.cookieService.get("jwt");
-    if (token === "") HttpService.onError("No token");
+    if (token === "") this.onError("No token");
 
     this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body, headers: {Authorization: "Bearer " + token}}).subscribe((response) => {
-      HttpService.callImplementation<T>(response, implementation, onFailure);
+      this.callImplementation<T>(response, implementation, onFailure);
+    }, (e) => {
+      this.onError(e)
     });
   }
 
@@ -84,19 +99,21 @@ export class HttpService {
     return endpoint;
   }
 
-  private static callImplementation<T>(response : HttpResponse<T>, implementation : (data : T) => void | null, onFailure : () => void) : void {
+  private callImplementation<T>(response : HttpResponse<T>, implementation : (data : T) => void | null, onFailure : () => void) : void {
     // if error
     if (response.response === HttpService.RESPONSE_FAILURE_CODE) {
-      HttpService.onError(response.errorMessage);
+      this.onError(response.errorMessage);
       onFailure();
     }
     else {
-      if (implementation !== null)
+      if (implementation !== null) {}
         implementation(response.data);
+      this.onSuccesfulRequestEvent.emit(null);
     }
   }
 
-  private static onError(message : string) {
-    console.log(message);
+  private onError(message : string) {
+    if (message !== "No token")
+      this.onErrorEvent.emit(message);
   }
 }

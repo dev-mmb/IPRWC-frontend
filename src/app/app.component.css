@@ -1,1 +1,8 @@
 
+.error-banner {
+  background-color: #e63946;
+
+}
+.error-banner-text {
+  margin-left: 20px;
+}

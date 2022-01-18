@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
+import {HttpService} from "../services/http.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,13 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class AppComponent {
   title = 'IPRWC-frontend';
-  constructor(private cookieService : CookieService) {
-    //this.cookieService.delete("jwt")
+  shouldShowErrorBanner = false;
+  constructor(private http : HttpService) {
+    this.http.onErrorEvent.subscribe(() => {
+      this.shouldShowErrorBanner = true;
+    });
+    this.http.onSuccesfulRequestEvent.subscribe(() => {
+      this.shouldShowErrorBanner = false;
+    });
   }
 }

@@ -10,6 +10,7 @@ import {FilterTagModel} from "../search-filters/search-filter-group/filterTag.mo
 })
 export class ProductCardsComponent implements OnInit {
   products : ProductModel[] = [];
+  dataHasLoaded = false;
 
   constructor(private http : ShopService) {
   }
@@ -22,6 +23,7 @@ export class ProductCardsComponent implements OnInit {
   getProductsFromService() {
     this.http.getProducts((data) => {
       this.products = data;
+      this.dataHasLoaded = true;
     });
   }
 

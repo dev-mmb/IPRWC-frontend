@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AccountOptions} from "./account-options.model";
 import {LoginService} from "../../../services/login.service";
 
@@ -13,7 +13,7 @@ export class AccountOptionsComponent implements OnInit {
   shouldUseMobileLayout = false;
   shouldShowAdmin = false;
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.onResize(null);
@@ -51,6 +51,7 @@ export class AccountOptionsComponent implements OnInit {
   }
   @HostListener('window:resize', ['$event'])
   onResize(event : any) {
-    this.shouldUseMobileLayout = (window.screen.width <= 1058);
+    this.shouldUseMobileLayout = (document.getElementsByTagName("html")[0].offsetWidth <= 1058);
+    this.cdr.detectChanges();
   }
 }

@@ -1,3 +1,6 @@
 <p *ngFor="let product of products">
   <app-product-card [product]="product"></app-product-card>
 </p>
+<p *ngIf="!dataHasLoaded">
+  Als de backend een tijd niet gebruikt wordt, dan gaat deze in sleep mode. Het kan een tijdje duren voordat deze dan weer reageert op requests. Mogelijk moet de site een aantal keren herladen worden
+</p>

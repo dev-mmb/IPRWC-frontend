@@ -1,4 +1,14 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {FilterGroupModel} from "./search-filter-group/filterGroup.model";
 import {HttpService} from "../../../services/http.service";
 import {FilterTagModel} from "./search-filter-group/filterTag.model";
@@ -13,7 +23,7 @@ export class SearchFiltersComponent implements OnInit {
   filters : FilterGroupModel[];
   shouldUseMobileLayout = false;
 
-  constructor(private http : HttpService) {
+  constructor(private http : HttpService, private cdr: ChangeDetectorRef) {
     this.filters = [];
     http.get<FilterGroupModel[]>("/filter_group", new Map<string, string>(), (data) => {
       this.filters = data;
@@ -30,6 +40,9 @@ export class SearchFiltersComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event : any) {
-    this.shouldUseMobileLayout = (window.screen.width <= 991);
+    this.shouldUseMobileLayout = (document.getElementsByTagName("html")[0].offsetWidth <= 991);
+    this.cdr.detectChanges();
   }
+
+
 }

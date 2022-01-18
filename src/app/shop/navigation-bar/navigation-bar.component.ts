@@ -27,7 +27,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   subscription : Subscription | null = null;
   isLoggedIn = false;
 
-  constructor(private shoppingCart : ShoppingCartService, private login : LoginService, private router : Router) {
+  constructor(private shoppingCart : ShoppingCartService, private login : LoginService, private router : Router, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -91,6 +91,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event : any) {
-    this.shouldUseMobileLayout = (window.screen.width <= 1058);
+    this.shouldUseMobileLayout = (document.getElementsByTagName("html")[0].offsetWidth <= 1058);
+    this.cdr.detectChanges();
   }
 }

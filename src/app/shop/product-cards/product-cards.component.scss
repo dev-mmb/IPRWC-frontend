@@ -1,1 +1,17 @@
 
+.error-banner-text {
+  color: white;
+  animation-name: error-banner-keyframe;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes error-banner-keyframe {
+  0% {
+    color: white;
+  }
+  100% {
+    color: black;
+  }
+}
+

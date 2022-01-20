@@ -15,6 +15,7 @@ export class AccountAdminComponent implements OnInit {
   constructor(private shopService : ShopService, private modalService : NgbModal) { }
 
   ngOnInit(): void {
+    this.shopService.turnOffAllTags();
     this.shopService.getProducts((p) => {
       this.products = p;
     });

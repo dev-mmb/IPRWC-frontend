@@ -9,7 +9,7 @@ import {CreateAccountComponent} from "./create-account/create-account.component"
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  shouldShowError = false;
+  public shouldShowError = false;
   private username : string = "";
   private password : string = "";
 
@@ -29,7 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginButtonClicked() {
-    this.login.login(this.username, this.password, () => {this.onLoginSuccess()},() => {this.onLoginFailed()});
+    this.login.login(this.username, this.password, () => {
+      this.onLoginSuccess()
+    },() => {
+      this.onLoginFailed()
+    });
   }
 
   onLoginSuccess() {

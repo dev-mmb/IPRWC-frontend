@@ -19,9 +19,9 @@ export class ProductGroupSelectComponent implements OnInit {
 
   ngOnInit(): void {
     this.tag.filterGroup.name = "Geen";
-    this.tagService.getAllGroups((g) => {
+    this.tagService.getAllGroups().then((g) => {
       this.groups = g;
-    }, () => {});
+    });
   }
 
   onSetName(event : any) {
@@ -37,7 +37,7 @@ export class ProductGroupSelectComponent implements OnInit {
   }
 
   createFilterTag() {
-    this.tagService.createTag([this.tag], (tags) => {
+    this.tagService.createTag([this.tag]).then((tags) => {
       this.onCreateNewTag.emit(tags);
       let ref = this.modalService.open(GenericPopupComponent).componentInstance;
       ref.title = "Filter succesvol opgeslagen!";

@@ -33,12 +33,12 @@ export class AccountOrdersComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    this.orderService.getOrders((orders) => {
+    this.orderService.getOrders().then((orders) => {
       this.orders = orders;
       if (this.orderToScrollTo !== null) {
         this.scrollToOrder(this.orderToScrollTo.id);
       }
-    }, () => {});
+    });
   }
 
   scrollToOrder(id : string) {
@@ -64,9 +64,10 @@ export class AccountOrdersComponent implements OnInit, AfterViewInit {
     ref.confirmText = "Annuleer Bestelling";
     ref.denyText = "Sluit";
     ref.confirm = () => {
-      this.orderService.deleteOrder(order, () => {
+      this.orderService.deleteOrder(order).then(() => {
         this.ngAfterViewInit();
-      }, () => {
+      }).catch((e) => {
+        console.log(e);
         let ref2 = this.modalService.open(GenericPopupComponent).componentInstance;
         ref2.title = "Er is iets mis gegaan";
         ref2.confirmText = "Sluit";

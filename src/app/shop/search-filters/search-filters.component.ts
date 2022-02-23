@@ -25,7 +25,7 @@ export class SearchFiltersComponent implements OnInit {
 
   constructor(private http : HttpService, private cdr: ChangeDetectorRef) {
     this.filters = [];
-    http.get<FilterGroupModel[]>("/filter_group", new Map<string, string>(), (data) => {
+    http.get<FilterGroupModel[]>("/filter_group", []).then((data) => {
       this.filters = data;
     });
   }

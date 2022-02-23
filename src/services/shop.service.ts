@@ -15,8 +15,8 @@ export class ShopService {
     this.searchedName = "";
   }
 
-  getProducts(implementation : (data : ProductModel[]) => void) : void {
-    let map = new Map<string, string>();
+  async getProducts() : Promise<ProductModel[]> {
+    let map : {key: string, value: string}[] = [];
 
     if (this.tags.length !== 0) {
       let dataString = "";
@@ -27,22 +27,22 @@ export class ShopService {
 
       // remove last comma
       dataString = dataString.substr(0, dataString.length - 1);
-      map.set("tags", dataString);
+      map.push({key: "tags", value: dataString});
     }
 
     if (this.searchedName !== "") {
-      map.set("name", this.searchedName);
+      map.push({key: "name", value: this.searchedName});
     }
 
-    this.http.get<ProductModel[]>("/product", map, implementation);
+    return await this.http.get<ProductModel[]>("/product", map);
   }
 
-  changeProduct(product : ProductModel, onSuccess : (p : ProductModel) => void, onFailure : () => void) {
-    this.http.put("/product", product, onSuccess, onFailure);
+  async changeProduct(product : ProductModel) : Promise<ProductModel> {
+    return await this.http.put<ProductModel>("/product", product);
   }
 
-  createProduct(product : ProductModel, onSuccess : (p : ProductModel[]) => void, onFailure : () => void) {
-    this.http.post("/product", [product], onSuccess, onFailure);
+  async createProduct(product : ProductModel) : Promise<ProductModel[]> {
+    return await this.http.post("/product", [product]);
   }
 
   toggleTag(tag : FilterTagModel) {

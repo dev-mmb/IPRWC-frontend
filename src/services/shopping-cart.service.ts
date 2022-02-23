@@ -33,7 +33,7 @@ export class ShoppingCartService {
     }, () => {
       // else open popup
       this.login.openLoginPopup(() => {
-        this.getShoppingCart((data) => {
+        this.getShoppingCart().then((data) => {
           this.shoppingCart = data;
           this.addToCart(product);
         });
@@ -43,7 +43,7 @@ export class ShoppingCartService {
 
   getCart(callback : (data: ShoppingCartModel) => void)  {
     this.login.isLoggedIn(() => {
-      this.getShoppingCart((data) => {
+      this.getShoppingCart().then((data) => {
         this.shoppingCart = data;
         callback(data);
       });
@@ -61,7 +61,7 @@ export class ShoppingCartService {
     if (!found) {
       this.shoppingCart.products.push({product: model, amount: 1});
     }
-    this.setShoppingCart(this.shoppingCart, () => {});
+    this.setShoppingCart(this.shoppingCart);
     this._onShoppingCartChanged.emit(this.shoppingCart);
   }
 
@@ -77,7 +77,7 @@ export class ShoppingCartService {
     for (let i = 0; i < this.shoppingCart.products.length; i++) {
       if (this.shoppingCart.products[i].product.id === product.id) {
         this.shoppingCart.products.splice(i, 1);
-        this.setShoppingCart(this.shoppingCart, () => {});
+        this.setShoppingCart(this.shoppingCart);
       }
     }
   }
@@ -86,17 +86,17 @@ export class ShoppingCartService {
     for (let i = 0; i < this.shoppingCart.products.length; i++) {
       if (this.shoppingCart.products[i].product.name === product.name) {
         this.shoppingCart.products[i].amount = amount;
-        this.setShoppingCart(this.shoppingCart, () => {});
+        this.setShoppingCart(this.shoppingCart);
         return;
       }
     }
   }
 
-  private getShoppingCart(callback : (cart : ShoppingCartModel) => void) {
-    this.http.getWithToken<ShoppingCartModel>("/cart", new Map<string, string>(), callback);
+  private async getShoppingCart() : Promise<ShoppingCartModel> {
+    return await this.http.getWithToken<ShoppingCartModel>("/cart");
   }
 
-  private setShoppingCart(cart : ShoppingCartModel, callback : (cart : ShoppingCartModel) => void) {
-    this.http.post<ShoppingCartModel>("/cart", cart, callback, () => {});
+  private async setShoppingCart(cart : ShoppingCartModel) : Promise<ShoppingCartModel> {
+    return await this.http.post<ShoppingCartModel>("/cart", cart);
   }
 }

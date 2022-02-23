@@ -19,9 +19,7 @@ export class SearchFilterGroupComponent implements OnInit {
   }
 
   ngOnInit() : void {
-    let map = new Map<string, string>();
-    map.set("group", this.filter.name);
-    this.http.get<FilterTagModel[]>("/filter_tag", map, (data) => {
+    this.http.get<FilterTagModel[]>("/filter_tag", [{key: "group", value: this.filter.name}]).then((data) => {
       this.tags = data;
     });
   }

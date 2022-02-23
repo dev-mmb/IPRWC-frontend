@@ -23,9 +23,9 @@ export class AccountOverviewComponent implements OnInit {
     }, () => {
       this.account.email = "Account niet gevonden";
     });
-    this.orderService.getOrders((orders) => {
+    this.orderService.getOrders().then((orders) => {
       this.orders = orders;
-    }, () => {});
+    });
   }
 
   onOrderClicked(order : OrderModel) {

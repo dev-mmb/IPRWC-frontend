@@ -10,15 +10,15 @@ export class FilterTagService {
 
   constructor(private http : HttpService) { }
 
-  getAllTags(onSuccess : (tags : FilterTagModel[]) => void, onFailure : () => void) {
-    this.http.get("/filter_tag", new Map<string, string>(), onSuccess, onFailure);
+  async getAllTags() : Promise<FilterTagModel[]> {
+    return await this.http.get("/filter_tag", []);
   }
 
-  getAllGroups(onSuccess : (groups : FilterGroupModel[]) => void, onFailure : () => void) {
-    this.http.get("/filter_group", new Map<string, string>(), onSuccess, onFailure);
+  async getAllGroups() : Promise<FilterGroupModel[]> {
+    return await this.http.get("/filter_group");
   }
 
-  createTag(tag : FilterTagModel[], onSuccess : (tag: FilterTagModel[]) => void, onFailure : () => void) {
-    this.http.post("/filter_tag", tag, onSuccess, onFailure);
+  async createTag(tag : FilterTagModel[]) : Promise<FilterTagModel[]> {
+    return await this.http.post("/filter_tag", tag);
   }
 }

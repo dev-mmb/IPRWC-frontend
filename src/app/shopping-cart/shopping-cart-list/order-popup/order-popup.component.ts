@@ -16,7 +16,7 @@ export class OrderPopupComponent implements OnInit {
   ngOnInit(): void {
   }
   onOrder() {
-    this.orderService.convertToOrder(() => {
+    this.orderService.convertToOrder().then(() => {
       this.activeModal.close();
       let ref = this.modalService.open(GenericPopupComponent).componentInstance;
       ref.title = "Bestelling Succesvol";

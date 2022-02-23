@@ -10,13 +10,13 @@ import {OrderModel} from "../app/shopping-cart/shopping-cart-list/order-popup/or
 export class OrderService {
   constructor(private http : HttpService) { }
 
-  convertToOrder(onSuccess : () => void, onFailure : () => void) {
-    this.http.post("/order", "null", onSuccess, onFailure);
+  async convertToOrder() {
+    return await this.http.post("/order", "null");
   }
-  getOrders(onSuccess : (orders : OrderModel[]) => void, onFailure : () => void) {
-    this.http.getWithToken("/order", new Map<string, string>(), onSuccess, onFailure);
+  async getOrders() : Promise<OrderModel[]> {
+    return await this.http.getWithToken("/order");
   }
-  deleteOrder(order : OrderModel, onSuccess : () => void, onFailure : () => void) {
-    this.http.delete("/order", order, onSuccess, onFailure);
+  async deleteOrder(order : OrderModel) : Promise<String> {
+    return await this.http.delete<OrderModel, string>("/order", order);
   }
 }

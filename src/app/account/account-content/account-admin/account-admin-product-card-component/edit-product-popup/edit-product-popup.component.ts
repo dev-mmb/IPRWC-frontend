@@ -19,7 +19,7 @@ export class EditProductPopupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.shopService.changeProduct(this.product, (p) => {
+    this.shopService.changeProduct(this.product).then((p) => {
       this.activeModal.close();
       let ref = this.modalService.open(GenericPopupComponent).componentInstance;
       ref.title = "Product verandert!";

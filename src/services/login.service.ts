@@ -26,7 +26,7 @@ export class LoginService {
       onFalse();
       return;
     } else {
-      this.http.getWithToken("/jwt/validate", new Map<string, string>(), (value : boolean) => {
+      this.http.getWithToken<boolean>("/jwt/validate").then((value : boolean) => {
         if (value) onTrue();
         else onFalse();
       }, onFalse);
@@ -52,32 +52,27 @@ export class LoginService {
     let hash : string = Md5.hashStr(password);
     this.http.postWithReturnType<{email : string, password : string}, {token: string}>(
         "/account/authenticate",
-        {email: username, password: hash},
-        (token) => {
+        {email: username, password: hash}).then((token) => {
           this.handleLoginResult(token);
           onSuccess();
           this.onSuccess();
-        },
-        onFailure
-      );
+        }, onFailure);
   }
+
   logout() {
     this.cookieService.delete("jwt");
     this.router.navigate([""]);
   }
 
-  createAccount(username : string, password : string, onSuccess : () => void, onFailure : () => void) {
-    let hash : string = Md5.hashStr(password);
-    this.http.post<{email : string, password : string}>(
+  async createAccount(username : string, password : string, onSuccess : () => void, onFailure : () => void) : Promise<string> {
+    const hash : string = Md5.hashStr(password);
+    return await this.http.postWithReturnType<{email : string, password : string}, string>(
         "/account/create",
-        {email: username, password: hash},
-        onSuccess,
-        onFailure
-      );
+        {email: username, password: hash});
   }
 
   getAccountDetails(onSuccess : (account : AccountDetailsModel) => void, onFailure : () => void) {
-    let token = this.cookieService.get("jwt");
+    const token = this.cookieService.get("jwt");
     if (token === "") onFailure();
     let jwt : DecodedJwtModel = jwt_decode(token);
     let account = new AccountDetailsModel();

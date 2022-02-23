@@ -20,9 +20,9 @@ export class EditProductFilterTagsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filterTagService.getAllTags((tags) => {
+    this.filterTagService.getAllTags().then((tags) => {
       this.filterTags = tags;
-    }, () => {});
+    });
   }
 
   getAllSelectedTags() : string {

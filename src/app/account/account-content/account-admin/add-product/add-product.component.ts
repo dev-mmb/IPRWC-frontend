@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    this.shopService.createProduct(this.product, (p) => {
+    this.shopService.createProduct(this.product).then((p) => {
       this.activeModal.close();
       let ref = this.modalService.open(GenericPopupComponent).componentInstance;
       ref.title = "Product succesvol toegevoegd!";

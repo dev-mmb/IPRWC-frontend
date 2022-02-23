@@ -21,7 +21,7 @@ export class ProductCardsComponent implements OnInit {
   }
 
   getProductsFromService() {
-    this.http.getProducts((data) => {
+    this.http.getProducts().then((data) => {
       this.products = data;
       this.dataHasLoaded = true;
     });

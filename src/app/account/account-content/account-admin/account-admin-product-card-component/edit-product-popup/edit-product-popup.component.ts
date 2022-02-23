@@ -42,7 +42,7 @@ export class EditProductPopupComponent implements OnInit {
     this.product.description = event.target.value;
   }
   onChangeProductPrice(event : any) {
-    this.product.price = event.target.value;
+    this.product.price = Math.abs(event.target.value);
   }
   onProductSpecsChanged(event : any) {
     this.product.specs = event.target.value;

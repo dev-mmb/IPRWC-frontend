@@ -20,7 +20,7 @@
                 (keyup)="onChangeDescription($event)">
       </textarea>
       <div>prijs: </div>
-      <input type="number" (keyup)="onChangeProductPrice($event)">
+      <input type="number" (keyup)="onChangeProductPrice($event)" [value]="product.price">
       <div>specificaties: </div>
       <input type="text" (keyup)="onProductSpecsChanged($event)">
       <div>

@@ -29,10 +29,17 @@ export class LoginService {
       this.http.getWithToken<boolean>("/jwt/validate").then((value : boolean) => {
         if (value) onTrue();
         else onFalse();
-      }, onFalse);
+      }, () => {
+        this.onInvalidJwt(onFalse)
+      }).catch(() => {
+        this.onInvalidJwt(onFalse)
+      });
     }
   }
-
+  private onInvalidJwt(callback : () => void) {
+    this.cookieService.delete("jwt");
+    callback();
+  }
   isAdmin() : boolean {
     let jwt : DecodedJwtModel = jwt_decode(this.cookieService.get("jwt"));
     for (let i = 0; i < jwt.roles.length; i++) {
@@ -56,7 +63,7 @@ export class LoginService {
           this.handleLoginResult(token);
           onSuccess();
           this.onSuccess();
-        }, onFailure);
+        }, onFailure).catch(onFailure);
   }
 
   logout() {

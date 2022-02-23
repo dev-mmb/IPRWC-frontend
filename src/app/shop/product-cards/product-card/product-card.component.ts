@@ -28,4 +28,8 @@ export class ProductCardComponent implements OnInit {
     }
     return specs + this.product.specs;
   }
+
+  getImagePath() : string {
+    return this.shoppingCartService.getUrl() + "/product_image/get/" + this.product.image;
+  }
 }

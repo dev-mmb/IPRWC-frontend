@@ -5,7 +5,7 @@
         {{product.product.name}}
       </div>
       <div class="product-image">
-        <img class="img-fluid" src="https://limitless-bastion-9783240.herokuapp.com/product_image/get/{{product.product.image}}" alt="product">
+        <img class="img-fluid" src="{{http.getUrl()}}/product_image/get/{{product.product.image}}" alt="product">
       </div>
     </div>
     <div class="col product-cost">

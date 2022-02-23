@@ -1,2 +1,2 @@
-<img src="https://limitless-bastion-9783240.herokuapp.com/product_image/get/{{product.image}}" class="img-fluid" alt="">
+<img src="{{http.getUrl()}}/product_image/get/{{product.image}}" class="img-fluid" alt="">
 <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>

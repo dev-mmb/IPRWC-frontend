@@ -10,7 +10,7 @@ import {ProductModel} from "../../../../../../shop/ProductModel";
 export class UploadFileComponent implements OnInit {
   @Input() product : ProductModel = new ProductModel();
 
-  constructor(private http : HttpService) { }
+  constructor(public http : HttpService) { }
 
   ngOnInit() : void {
   }

@@ -23,6 +23,10 @@ export class HttpService {
     this.http = h;
   }
 
+  public getUrl() : string {
+    return this.url;
+  }
+
   public async get<T>(endpoint : string, args : {key: string, value: string}[] = []) : Promise<T> {
     endpoint = this.getEndpointWithArguments(endpoint, args);
     const result = this.http.get<T>(this.url + endpoint);

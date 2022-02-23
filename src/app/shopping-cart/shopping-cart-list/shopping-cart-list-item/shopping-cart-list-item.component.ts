@@ -10,7 +10,7 @@ import {ShoppingCartService} from "../../../../services/shopping-cart.service";
 export class ShoppingCartListItemComponent implements OnInit {
   @Input() product : {product: ProductModel, amount: number} = {product: new ProductModel(), amount: 0}
 
-  constructor(private shoppingCartService : ShoppingCartService) { }
+  constructor(public shoppingCartService : ShoppingCartService) { }
 
   ngOnInit(): void {
   }

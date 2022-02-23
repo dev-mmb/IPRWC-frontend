@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OrderModel} from "../../../../shopping-cart/shopping-cart-list/order-popup/order.model";
+import {HttpService} from "../../../../../services/http.service";
 
 @Component({
   selector: 'app-order-preview-card',
@@ -9,7 +10,7 @@ import {OrderModel} from "../../../../shopping-cart/shopping-cart-list/order-pop
 export class OrderPreviewCardComponent implements OnInit {
   @Input()
   order : OrderModel;
-  constructor() {
+  constructor(public http : HttpService) {
     this.order = new OrderModel();
   }
 

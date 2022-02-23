@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductModel} from "../../../../../shop/ProductModel";
+import {HttpService} from "../../../../../../services/http.service";
 
 @Component({
   selector: 'app-order-card-product-card',
@@ -10,7 +11,7 @@ export class OrderCardProductCardComponent implements OnInit {
   @Input()
   product : {product: ProductModel, amount: number} = {product: new ProductModel(), amount: 0};
 
-  constructor() { }
+  constructor(public http : HttpService) { }
 
   ngOnInit(): void {
   }

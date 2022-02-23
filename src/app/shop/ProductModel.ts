@@ -1,6 +1,6 @@
 import {FilterTagModel} from "./search-filters/search-filter-group/filterTag.model";
 
-export class ProductModel  {
+export class ProductModel {
   description: string;
   filterTags: FilterTagModel[];
   id: string;
@@ -18,6 +18,5 @@ export class ProductModel  {
     this.price = 0;
     this.specs = "";
   }
-
 
 }

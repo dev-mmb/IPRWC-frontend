@@ -15,7 +15,9 @@ export class ShoppingCartService {
 
   constructor(private http : HttpService, private login : LoginService, private router : Router) {
   }
-
+  public getUrl() : string {
+    return this.http.getUrl();
+  }
   openCartAndLogin() {
     this.login.isLoggedIn(() => {
       this.openCart();

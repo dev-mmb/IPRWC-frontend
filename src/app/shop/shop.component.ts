@@ -10,6 +10,7 @@ import {ProductCardsComponent} from "./product-cards/product-cards.component";
 })
 export class ShopComponent implements OnInit {
   @ViewChild(ProductCardsComponent) productCards : any;
+
   constructor() {
 
   }

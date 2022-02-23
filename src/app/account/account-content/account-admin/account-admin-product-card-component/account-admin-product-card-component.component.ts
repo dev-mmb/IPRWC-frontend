@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductModel} from "../../../../shop/ProductModel";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditProductPopupComponent} from "./edit-product-popup/edit-product-popup.component";
+import {HttpService} from "../../../../../services/http.service";
 
 @Component({
   selector: 'app-account-admin-product-card-component',
@@ -13,7 +14,7 @@ export class AccountAdminProductCardComponentComponent implements OnInit {
   @Input() product : ProductModel = new ProductModel();
   @Output() onProductChanged = new EventEmitter<any>();
 
-  constructor(private modalService : NgbModal) { }
+  constructor(private modalService : NgbModal, public http : HttpService) { }
 
   ngOnInit(): void {
   }

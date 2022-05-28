@@ -1,4 +1,7 @@
 # IPRWCFrontend
+A simple webshop created as an excercice in angular and spring boot. find the backend here: https://github.com/meesmb/IPRWC-backend
+
+# How to deploy
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
 

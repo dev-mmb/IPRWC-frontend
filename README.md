@@ -1,5 +1,5 @@
 # IPRWCFrontend
-A simple webshop created as an excercice in angular and spring boot. find the backend here: https://github.com/meesmb/IPRWC-backend
+A simple webshop created as coursework for Leiden University of Applied sciences. find the backend here: https://github.com/meesmb/IPRWC-backend
 
 # How to deploy
 
